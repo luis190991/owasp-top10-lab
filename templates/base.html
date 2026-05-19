@@ -6,25 +6,96 @@
   <title>{% block title %}OWASP Top 10 Lab{% endblock %}</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
+    /* ── Base ──────────────────────────────────────────────────────────── */
+    :root { color-scheme: dark; }
     body { background: #0d1117; color: #c9d1d9; }
-    .navbar { background: #161b22 !important; border-bottom: 1px solid #30363d; }
-    .card { background: #161b22; border: 1px solid #30363d; }
-    .card-header { background: #21262d; border-bottom: 1px solid #30363d; }
-    code, pre { background: #0d1117; color: #f0883e; border: 1px solid #30363d; }
-    pre { padding: .75rem; border-radius: .375rem; overflow-x: auto; }
-    .badge-vuln  { background-color: #da3633; }
-    .badge-fixed { background-color: #238636; }
-    .lab-card:hover { border-color: #58a6ff; cursor: pointer; }
+
+    /* ── Typography ────────────────────────────────────────────────────── */
+    h1,h2,h3,h4,h5,h6 { color: #e6edf3; }
+    p, li, td, th, label, .form-label, .form-check-label,
+    .card-text, .card-title, .card-body { color: #c9d1d9; }
+    strong, b { color: #e6edf3; }
+    small, .small { color: #8b949e; }
+    .text-secondary { color: #8b949e !important; }
+    .text-muted     { color: #6e7681 !important; }
+
+    /* ── Links ─────────────────────────────────────────────────────────── */
     a { color: #58a6ff; }
     a:hover { color: #79c0ff; }
-    .alert-dark { background: #21262d; border-color: #30363d; color: #c9d1d9; }
-    .form-control, .form-select {
-      background: #0d1117; border-color: #30363d; color: #c9d1d9;
+
+    /* ── Navbar ────────────────────────────────────────────────────────── */
+    .navbar { background: #161b22 !important; border-bottom: 1px solid #30363d; }
+
+    /* ── Cards ─────────────────────────────────────────────────────────── */
+    .card { background: #161b22; border: 1px solid #30363d; }
+    .card-header { background: #21262d; border-bottom: 1px solid #30363d; color: #c9d1d9; }
+    .lab-card:hover { border-color: #58a6ff; cursor: pointer; }
+
+    /* ── Code / Pre ────────────────────────────────────────────────────── */
+    code, pre { background: #0d1117; color: #f0883e; border: 1px solid #30363d; }
+    pre { padding: .75rem; border-radius: .375rem; overflow-x: auto; }
+
+    /* ── Forms ─────────────────────────────────────────────────────────── */
+    .form-control, .form-select, textarea.form-control {
+      background: #0d1117; border-color: #30363d;
+      color: #c9d1d9;
     }
     .form-control:focus, .form-select:focus {
       background: #0d1117; border-color: #58a6ff; color: #c9d1d9; box-shadow: none;
     }
-    .btn-danger-outline { border-color: #da3633; color: #da3633; }
+    .form-control:disabled, .form-control[readonly] {
+      background: #161b22; color: #8b949e;
+    }
+    ::placeholder { color: #6e7681 !important; opacity: 1; }
+    .form-check-input { background-color: #0d1117; border-color: #30363d; }
+    .form-check-input:checked { background-color: #238636; border-color: #238636; }
+    /* Fix select option dropdown (OS-rendered) */
+    option { background: #161b22; color: #c9d1d9; }
+
+    /* ── Alerts ────────────────────────────────────────────────────────── */
+    .alert          { border-width: 1px; }
+    .alert-dark     { background: #21262d; border-color: #30363d; color: #c9d1d9; }
+    .alert-danger   { background: #2d1117; border-color: #da3633; color: #ff7b72; }
+    .alert-warning  { background: #27200f; border-color: #9e6a03; color: #d29922; }
+    .alert-success  { background: #0d2818; border-color: #238636; color: #3fb950; }
+    .alert-info     { background: #0d1f2d; border-color: #1f6feb; color: #79c0ff; }
+    .alert-secondary{ background: #21262d; border-color: #30363d; color: #8b949e; }
+    .btn-close { filter: invert(1) grayscale(100%) brightness(200%); }
+
+    /* ── Tables ────────────────────────────────────────────────────────── */
+    .table { color: #c9d1d9; border-color: #30363d; }
+    .table > :not(caption) > * > * {
+      background-color: transparent;
+      color: #c9d1d9;
+      border-color: #30363d;
+    }
+    .table thead th { color: #8b949e; border-color: #30363d; }
+    .table-dark {
+      --bs-table-bg: #161b22;
+      --bs-table-border-color: #30363d;
+      --bs-table-striped-bg: #1c2128;
+      --bs-table-hover-bg: #21262d;
+      color: #c9d1d9;
+    }
+    .table-danger  { --bs-table-bg: rgba(218,54,51,.15); --bs-table-color: #ff7b72; color: #ff7b72; }
+    .table-warning { --bs-table-bg: rgba(158,106,3,.15); --bs-table-color: #d29922; color: #d29922; }
+    .table-success { --bs-table-bg: rgba(35,134,54,.15); --bs-table-color: #3fb950; color: #3fb950; }
+
+    /* ── Badges ────────────────────────────────────────────────────────── */
+    .badge-vuln  { background-color: #da3633; }
+    .badge-fixed { background-color: #238636; }
+
+    /* ── Buttons ───────────────────────────────────────────────────────── */
+    .btn-outline-secondary {
+      color: #8b949e; border-color: #30363d;
+    }
+    .btn-outline-secondary:hover {
+      background: #21262d; color: #c9d1d9; border-color: #58a6ff;
+    }
+    .btn-outline-light { color: #c9d1d9; border-color: #30363d; }
+    .btn-outline-light:hover { background: #21262d; color: #e6edf3; }
+    .btn-outline-danger { color: #ff7b72; border-color: #da3633; }
+    .btn-outline-danger:hover { background: #2d1117; color: #ff7b72; }
   </style>
 </head>
 <body>
