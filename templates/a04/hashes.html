@@ -1,13 +1,13 @@
 {% extends "base.html" %}
-{% block title %}A04 – Password Hashes{% endblock %}
+{% block title %}A04 – Hashes de Contraseñas{% endblock %}
 {% block content %}
-<h4><a href="/a04/">A04</a> — Stored Password Hashes
+<h4><a href="/a04/">A04</a> — Hashes de Contraseñas Almacenados
   <span class="badge bg-danger ms-2">MD5</span>
 </h4>
 <div class="card mb-3">
   <div class="card-body p-0">
     <table class="table table-dark mb-0">
-      <thead><tr><th>ID</th><th>Username</th><th>MD5 Hash</th></tr></thead>
+      <thead><tr><th>ID</th><th>Usuario</th><th>Hash MD5</th></tr></thead>
       <tbody>
         {% for u in users %}
         <tr>
@@ -21,13 +21,13 @@
   </div>
 </div>
 <div class="card">
-  <div class="card-header text-danger">Challenge: Crack these hashes</div>
+  <div class="card-header text-danger">Reto: Crackea estos hashes</div>
   <div class="card-body">
-    <p>Use an online tool (<a href="https://crackstation.net" target="_blank">CrackStation</a>)
-    or run locally:</p>
+    <p>Usa una herramienta online (<a href="https://crackstation.net" target="_blank">CrackStation</a>)
+    o ejecútalo localmente:</p>
     <pre>hashcat -a 0 -m 0 hashes.txt /usr/share/wordlists/rockyou.txt</pre>
-    <p class="text-secondary small">MD5 has no salt here — identical passwords produce identical hashes,
-    making rainbow table attacks trivial. Fix: use bcrypt/argon2 with per-user salt.</p>
+    <p class="text-secondary small">MD5 no tiene sal aquí — contraseñas idénticas producen hashes idénticos,
+    lo que hace que los ataques de tabla arcoíris sean triviales. Corrección: usa bcrypt o argon2 con sal por usuario.</p>
   </div>
 </div>
 {% endblock %}

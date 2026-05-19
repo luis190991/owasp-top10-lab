@@ -1,13 +1,13 @@
 {% extends "base.html" %}
-{% block title %}A05 – Command Injection{% endblock %}
+{% block title %}A05 – Inyección de Comandos{% endblock %}
 {% block content %}
-<h4><a href="/a05/">A05</a> — OS Command Injection: Ping Utility</h4>
+<h4><a href="/a05/">A05</a> — Inyección de Comandos OS: Herramienta Ping</h4>
 <div class="row">
   <div class="col-md-5">
     <div class="card mb-3">
       <div class="card-body">
         <form method="post">
-          <label class="form-label">Host to ping</label>
+          <label class="form-label">Host a hacer ping</label>
           <input name="host" class="form-control font-monospace mb-2"
                  value="{{ host }}" placeholder="127.0.0.1">
           <button class="btn btn-danger w-100">Ping</button>
@@ -15,7 +15,7 @@
       </div>
     </div>
     <div class="card">
-      <div class="card-header text-danger small">Injection payloads</div>
+      <div class="card-header text-danger small">Payloads de inyección</div>
       <div class="card-body">
         <pre class="small">127.0.0.1; id
 127.0.0.1 && whoami
@@ -23,7 +23,7 @@
 127.0.0.1; ls /
 127.0.0.1; env</pre>
         <p class="text-secondary small mt-2">
-          The backend runs: <code>ping -c 2 {host}</code> via <code>shell=True</code>
+          El backend ejecuta: <code>ping -c 2 {host}</code> con <code>shell=True</code>
         </p>
       </div>
     </div>
@@ -31,7 +31,7 @@
   <div class="col-md-7">
     {% if output is not none %}
     <div class="card">
-      <div class="card-header text-danger">Command Output</div>
+      <div class="card-header text-danger">Salida del Comando</div>
       <div class="card-body">
         <pre>{{ output }}</pre>
       </div>

@@ -1,37 +1,37 @@
 {% extends "base.html" %}
 {% block title %}A05 – SQLi Login{% endblock %}
 {% block content %}
-<h4><a href="/a05/">A05</a> — SQL Injection: Auth Bypass</h4>
+<h4><a href="/a05/">A05</a> — Inyección SQL: Bypass de Autenticación</h4>
 <div class="row">
   <div class="col-md-5">
     <div class="card mb-3">
       <div class="card-body">
         <form method="post">
           <div class="mb-3">
-            <label class="form-label">Username</label>
+            <label class="form-label">Usuario</label>
             <input name="username" class="form-control font-monospace"
                    value="{{ request.form.get('username','') }}" placeholder="admin">
           </div>
           <div class="mb-3">
-            <label class="form-label">Password</label>
+            <label class="form-label">Contraseña</label>
             <input name="password" class="form-control font-monospace"
                    value="{{ request.form.get('password','') }}" placeholder="' OR '1'='1">
           </div>
-          <button class="btn btn-danger w-100">Login</button>
+          <button class="btn btn-danger w-100">Iniciar Sesión</button>
         </form>
       </div>
     </div>
     <div class="card">
-      <div class="card-header text-danger small">Payloads to try</div>
+      <div class="card-header text-danger small">Payloads para probar</div>
       <div class="card-body">
-        <pre class="small">Username: admin
-Password: ' OR '1'='1
+        <pre class="small">Usuario: admin
+Contraseña: ' OR '1'='1
 
-Username: ' OR 1=1--
-Password: anything
+Usuario: ' OR 1=1--
+Contraseña: cualquier cosa
 
-Username: admin'--
-Password: anything</pre>
+Usuario: admin'--
+Contraseña: cualquier cosa</pre>
       </div>
     </div>
   </div>
@@ -39,11 +39,11 @@ Password: anything</pre>
     {% if result %}
     <div class="card">
       <div class="card-header {{ 'text-success' if result.status=='success' else 'text-danger' }}">
-        {{ result.status | upper }}
+        {{ 'ÉXITO' if result.status=='success' else 'FALLO' }}
       </div>
       <div class="card-body">
         <p>{{ result.message }}</p>
-        <p class="text-secondary small">Query executed:</p>
+        <p class="text-secondary small">Consulta ejecutada:</p>
         <pre class="small">{{ result.query }}</pre>
       </div>
     </div>

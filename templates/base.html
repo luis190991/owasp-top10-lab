@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{% block title %}OWASP Top 10 Lab{% endblock %}</title>
+  <title>{% block title %}Lab OWASP Top 10{% endblock %}</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
     /* ── Base ──────────────────────────────────────────────────────────── */
     :root { color-scheme: dark; }
     body { background: #0d1117; color: #c9d1d9; }
 
-    /* ── Typography ────────────────────────────────────────────────────── */
+    /* ── Tipografía ────────────────────────────────────────────────────── */
     h1,h2,h3,h4,h5,h6 { color: #e6edf3; }
     p, li, td, th, label, .form-label, .form-check-label,
     .card-text, .card-title, .card-body { color: #c9d1d9; }
@@ -35,10 +35,9 @@
     code, pre { background: #0d1117; color: #f0883e; border: 1px solid #30363d; }
     pre { padding: .75rem; border-radius: .375rem; overflow-x: auto; }
 
-    /* ── Forms ─────────────────────────────────────────────────────────── */
+    /* ── Formularios ───────────────────────────────────────────────────── */
     .form-control, .form-select, textarea.form-control {
-      background: #0d1117; border-color: #30363d;
-      color: #c9d1d9;
+      background: #0d1117; border-color: #30363d; color: #c9d1d9;
     }
     .form-control:focus, .form-select:focus {
       background: #0d1117; border-color: #58a6ff; color: #c9d1d9; box-shadow: none;
@@ -49,10 +48,9 @@
     ::placeholder { color: #6e7681 !important; opacity: 1; }
     .form-check-input { background-color: #0d1117; border-color: #30363d; }
     .form-check-input:checked { background-color: #238636; border-color: #238636; }
-    /* Fix select option dropdown (OS-rendered) */
     option { background: #161b22; color: #c9d1d9; }
 
-    /* ── Alerts ────────────────────────────────────────────────────────── */
+    /* ── Alertas ───────────────────────────────────────────────────────── */
     .alert          { border-width: 1px; }
     .alert-dark     { background: #21262d; border-color: #30363d; color: #c9d1d9; }
     .alert-danger   { background: #2d1117; border-color: #da3633; color: #ff7b72; }
@@ -62,36 +60,28 @@
     .alert-secondary{ background: #21262d; border-color: #30363d; color: #8b949e; }
     .btn-close { filter: invert(1) grayscale(100%) brightness(200%); }
 
-    /* ── Tables ────────────────────────────────────────────────────────── */
+    /* ── Tablas ────────────────────────────────────────────────────────── */
     .table { color: #c9d1d9; border-color: #30363d; }
     .table > :not(caption) > * > * {
-      background-color: transparent;
-      color: #c9d1d9;
-      border-color: #30363d;
+      background-color: transparent; color: #c9d1d9; border-color: #30363d;
     }
     .table thead th { color: #8b949e; border-color: #30363d; }
     .table-dark {
-      --bs-table-bg: #161b22;
-      --bs-table-border-color: #30363d;
-      --bs-table-striped-bg: #1c2128;
-      --bs-table-hover-bg: #21262d;
+      --bs-table-bg: #161b22; --bs-table-border-color: #30363d;
+      --bs-table-striped-bg: #1c2128; --bs-table-hover-bg: #21262d;
       color: #c9d1d9;
     }
-    .table-danger  { --bs-table-bg: rgba(218,54,51,.15); --bs-table-color: #ff7b72; color: #ff7b72; }
-    .table-warning { --bs-table-bg: rgba(158,106,3,.15); --bs-table-color: #d29922; color: #d29922; }
-    .table-success { --bs-table-bg: rgba(35,134,54,.15); --bs-table-color: #3fb950; color: #3fb950; }
+    .table-danger  { --bs-table-bg: rgba(218,54,51,.15); color: #ff7b72; }
+    .table-warning { --bs-table-bg: rgba(158,106,3,.15);  color: #d29922; }
+    .table-success { --bs-table-bg: rgba(35,134,54,.15);  color: #3fb950; }
 
     /* ── Badges ────────────────────────────────────────────────────────── */
     .badge-vuln  { background-color: #da3633; }
     .badge-fixed { background-color: #238636; }
 
-    /* ── Buttons ───────────────────────────────────────────────────────── */
-    .btn-outline-secondary {
-      color: #8b949e; border-color: #30363d;
-    }
-    .btn-outline-secondary:hover {
-      background: #21262d; color: #c9d1d9; border-color: #58a6ff;
-    }
+    /* ── Botones ───────────────────────────────────────────────────────── */
+    .btn-outline-secondary { color: #8b949e; border-color: #30363d; }
+    .btn-outline-secondary:hover { background: #21262d; color: #c9d1d9; border-color: #58a6ff; }
     .btn-outline-light { color: #c9d1d9; border-color: #30363d; }
     .btn-outline-light:hover { background: #21262d; color: #e6edf3; }
     .btn-outline-danger { color: #ff7b72; border-color: #da3633; }
@@ -102,11 +92,11 @@
 <nav class="navbar navbar-expand-lg navbar-dark">
   <div class="container-fluid">
     <a class="navbar-brand fw-bold" href="/">
-      <span class="text-danger">⚠</span> OWASP Top 10:2025 Lab
+      <span class="text-danger">⚠</span> Lab OWASP Top 10:2025
     </a>
     <div class="d-flex">
       <a href="https://owasp.org/Top10/2025/" target="_blank" class="btn btn-sm btn-outline-secondary">
-        OWASP Docs ↗
+        Docs OWASP ↗
       </a>
     </div>
   </div>

@@ -1,22 +1,22 @@
 {% extends "base.html" %}
-{% block title %}A01 – Admin Panel{% endblock %}
+{% block title %}A01 – Panel de Administración{% endblock %}
 {% block content %}
-<h4><a href="/a01/">A01</a> — Admin Panel
-  <span class="badge bg-danger ms-2">Missing Role Check</span>
+<h4><a href="/a01/">A01</a> — Panel de Administración
+  <span class="badge bg-danger ms-2">Sin verificación de rol</span>
 </h4>
-<p class="text-secondary">Logged in as: <strong>{{ current_user.username }}</strong>
-  (role: <code>{{ current_user.role }}</code>)</p>
+<p class="text-secondary">Sesión activa como: <strong>{{ current_user.username }}</strong>
+  (rol: <code>{{ current_user.role }}</code>)</p>
 
 <div class="alert alert-danger">
-  You reached the admin panel as <strong>{{ current_user.role }}</strong>!
-  The route has no <code>role == 'admin'</code> check.
+  ¡Accediste al panel de administración como <strong>{{ current_user.role }}</strong>!
+  La ruta no tiene verificación de <code>role == 'admin'</code>.
 </div>
 
 <div class="card">
-  <div class="card-header">All Users (admin view)</div>
+  <div class="card-header">Todos los usuarios (vista de admin)</div>
   <div class="card-body p-0">
     <table class="table table-dark mb-0">
-      <thead><tr><th>ID</th><th>Username</th><th>Email</th><th>Role</th><th>Credit Card</th></tr></thead>
+      <thead><tr><th>ID</th><th>Usuario</th><th>Correo</th><th>Rol</th><th>Tarjeta de crédito</th></tr></thead>
       <tbody>
         {% for u in users %}
         <tr>

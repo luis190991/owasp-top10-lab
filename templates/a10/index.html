@@ -1,27 +1,27 @@
 {% extends "base.html" %}
-{% block title %}A10 – Exception Handling{% endblock %}
+{% block title %}A10 – Manejo Incorrecto de Excepciones{% endblock %}
 {% block content %}
-<h2><span class="badge bg-warning text-dark">A10:2025</span> Mishandling of Exceptional Conditions</h2>
-<p class="text-secondary">Unhandled exceptions expose internal paths, config, and DB structure to attackers.</p>
+<h2><span class="badge bg-warning text-dark">A10:2025</span> Manejo Incorrecto de Condiciones Excepcionales</h2>
+<p class="text-secondary">Las excepciones no manejadas exponen rutas internas, configuración y estructura de la BD al atacante.</p>
 <div class="card mb-3">
-  <div class="card-header text-warning fw-bold">Challenges</div>
+  <div class="card-header text-warning fw-bold">Retos</div>
   <div class="card-body">
     <ol>
-      <li><strong>Stack trace exposure:</strong> Use <code>/a10/calculate-bad</code> — divide by zero (<code>a=5, b=0</code>).
-        Find the absolute file path in the traceback.</li>
-      <li><strong>Path traversal via error:</strong> Use <code>/a10/read-bad?file=../../etc/passwd</code>.
-        The stack trace reveals the real filesystem layout.</li>
-      <li><strong>SQL error leakage:</strong> Use <code>/a10/query-bad?table=nonexistent</code>.
-        The error reveals internal table names and DB structure.</li>
-      <li><strong>Compare with fixed:</strong> Try the same attacks on <code>/calculate-good</code>, <code>/read-good</code> — observe generic errors only.</li>
+      <li><strong>Stack trace expuesto:</strong> Usa <code>/a10/calculate-bad</code> — divide entre cero (<code>a=5, b=0</code>).
+        Encuentra la ruta absoluta del archivo en el stack trace.</li>
+      <li><strong>Traversal de ruta vía error:</strong> Usa <code>/a10/read-bad?file=../../etc/passwd</code>.
+        El stack trace revela la estructura real del sistema de archivos.</li>
+      <li><strong>Filtración de error SQL:</strong> Usa <code>/a10/query-bad?table=nonexistent</code>.
+        El error revela nombres de tablas internas y la estructura de la BD.</li>
+      <li><strong>Compara con la versión corregida:</strong> Prueba los mismos ataques en <code>/calculate-good</code> y <code>/read-good</code> — solo verás errores genéricos.</li>
     </ol>
     <div class="d-flex gap-2 flex-wrap mt-3">
-      <a href="/a10/calculate-bad"    class="btn btn-warning text-dark btn-sm">Divide (BAD)</a>
-      <a href="/a10/calculate-good"   class="btn btn-success btn-sm">Divide (GOOD)</a>
-      <a href="/a10/read-bad"         class="btn btn-warning text-dark btn-sm">Read File (BAD)</a>
-      <a href="/a10/read-good"        class="btn btn-success btn-sm">Read File (GOOD)</a>
-      <a href="/a10/query-bad"        class="btn btn-warning text-dark btn-sm">Query (BAD)</a>
-      <a href="/solutions/a10"        class="btn btn-outline-secondary btn-sm">Solution</a>
+      <a href="/a10/calculate-bad"  class="btn btn-warning text-dark btn-sm">Dividir (MAL)</a>
+      <a href="/a10/calculate-good" class="btn btn-success btn-sm">Dividir (BIEN)</a>
+      <a href="/a10/read-bad"       class="btn btn-warning text-dark btn-sm">Leer Archivo (MAL)</a>
+      <a href="/a10/read-good"      class="btn btn-success btn-sm">Leer Archivo (BIEN)</a>
+      <a href="/a10/query-bad"      class="btn btn-warning text-dark btn-sm">Consulta (MAL)</a>
+      <a href="/solutions/a10"      class="btn btn-outline-secondary btn-sm">Solución</a>
     </div>
   </div>
 </div>

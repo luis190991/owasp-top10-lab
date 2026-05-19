@@ -1,16 +1,16 @@
 {% extends "base.html" %}
-{% block title %}A08 – Unsigned Update{% endblock %}
+{% block title %}A08 – Actualización Sin Firma{% endblock %}
 {% block content %}
-<h4><a href="/a08/">A08</a> — Unsigned Software Update</h4>
+<h4><a href="/a08/">A08</a> — Actualización de Software Sin Firma</h4>
 <div class="card mb-3">
-  <div class="card-header">Update Manifest</div>
+  <div class="card-header">Manifiesto de Actualización</div>
   <div class="card-body">
     <table class="table table-dark table-sm">
       {% for k, v in manifest.items() %}
       <tr>
         <th>{{ k }}</th>
         <td class="{{ 'text-danger' if v is none else '' }}">
-          {{ v if v is not none else 'None ← NOT VERIFIED' }}
+          {{ v if v is not none else 'None ← NO VERIFICADO' }}
         </td>
       </tr>
       {% endfor %}
@@ -21,14 +21,14 @@
   <div class="card-body">
     {% if message %}<div class="alert alert-warning">{{ message }}</div>{% endif %}
     <form method="post">
-      <label class="form-label">Apply version</label>
+      <label class="form-label">Aplicar versión</label>
       <input name="version" class="form-control mb-2" value="{{ manifest.version }}">
-      <button class="btn btn-danger">Apply Update (No Verification)</button>
+      <button class="btn btn-danger">Aplicar Actualización (Sin Verificación)</button>
     </form>
   </div>
 </div>
 <div class="alert alert-dark">
-  <strong>Fix:</strong> Always verify <code>sha256</code> of downloaded artifacts.
-  For critical updates, also verify a GPG/RSA signature from a trusted key.
+  <strong>Corrección:</strong> Siempre verifica el <code>sha256</code> de los artefactos descargados.
+  Para actualizaciones críticas, también verifica una firma GPG/RSA de una clave de confianza.
 </div>
 {% endblock %}

@@ -1,23 +1,23 @@
 {% extends "base.html" %}
-{% block title %}A06 – Login{% endblock %}
+{% block title %}A06 – Iniciar Sesión{% endblock %}
 {% block content %}
-<h4><a href="/a06/">A06</a> — Login</h4>
+<h4><a href="/a06/">A06</a> — Iniciar Sesión</h4>
 <div class="card" style="max-width:400px">
   <div class="card-body">
     {% if error %}<div class="alert alert-danger">{{ error }}</div>{% endif %}
     <form method="post">
       <div class="mb-3">
-        <label class="form-label">Username</label>
+        <label class="form-label">Usuario</label>
         <input name="username" class="form-control" placeholder="alice">
       </div>
       <div class="mb-3">
-        <label class="form-label">Password</label>
+        <label class="form-label">Contraseña</label>
         <input name="password" type="password" class="form-control" placeholder="alicepass">
       </div>
-      <button class="btn btn-warning text-dark w-100">Login</button>
+      <button class="btn btn-warning text-dark w-100">Iniciar Sesión</button>
     </form>
     <hr>
-    <small class="text-secondary">Credentials: alice/alicepass · admin/adminpass</small>
+    <small class="text-secondary">Credenciales: alice/alicepass · admin/adminpass</small>
   </div>
 </div>
 {% endblock %}

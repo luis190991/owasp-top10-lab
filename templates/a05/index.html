@@ -1,25 +1,25 @@
 {% extends "base.html" %}
-{% block title %}A05 – Injection{% endblock %}
+{% block title %}A05 – Inyección{% endblock %}
 {% block content %}
-<h2><span class="badge bg-danger">A05:2025</span> Injection</h2>
-<p class="text-secondary">Untrusted data is sent to an interpreter as part of a command or query.</p>
+<h2><span class="badge bg-danger">A05:2025</span> Inyección</h2>
+<p class="text-secondary">Datos no confiables se envían a un intérprete como parte de un comando o consulta.</p>
 
 <div class="card mb-3">
-  <div class="card-header text-danger fw-bold">Challenges</div>
+  <div class="card-header text-danger fw-bold">Retos</div>
   <div class="card-body">
     <ol>
-      <li><strong>SQLi — Auth Bypass:</strong> Login as <code>admin</code> without knowing the password.
-        <br><small class="text-secondary">Hint: <code>' OR '1'='1</code></small></li>
-      <li><strong>SQLi — UNION extraction:</strong> Use the search to dump all users from <code>a05_users</code>.
-        <br><small class="text-secondary">Hint: <code>' UNION SELECT id,username,password,role FROM a05_users-- </code></small></li>
-      <li><strong>Command Injection:</strong> Use the ping tool to run <code>id</code> on the server.
-        <br><small class="text-secondary">Hint: <code>127.0.0.1; id</code> or <code>127.0.0.1 && whoami</code></small></li>
+      <li><strong>SQLi — Bypass de autenticación:</strong> Inicia sesión como <code>admin</code> sin conocer la contraseña.
+        <br><small class="text-secondary">Pista: <code>' OR '1'='1</code></small></li>
+      <li><strong>SQLi — Extracción UNION:</strong> Usa el buscador para extraer todos los usuarios de <code>a05_users</code>.
+        <br><small class="text-secondary">Pista: <code>' UNION SELECT id,username,password,role FROM a05_users-- </code></small></li>
+      <li><strong>Inyección de comandos:</strong> Usa la herramienta ping para ejecutar <code>id</code> en el servidor.
+        <br><small class="text-secondary">Pista: <code>127.0.0.1; id</code> o <code>127.0.0.1 && whoami</code></small></li>
     </ol>
     <div class="d-flex gap-2 flex-wrap mt-3">
-      <a href="/a05/login"  class="btn btn-danger btn-sm">SQLi Login</a>
-      <a href="/a05/search" class="btn btn-danger btn-sm">SQLi Search</a>
-      <a href="/a05/ping"   class="btn btn-danger btn-sm">Command Injection</a>
-      <a href="/solutions/a05" class="btn btn-outline-secondary btn-sm">Solution</a>
+      <a href="/a05/login"     class="btn btn-danger btn-sm">SQLi Login</a>
+      <a href="/a05/search"    class="btn btn-danger btn-sm">SQLi Búsqueda</a>
+      <a href="/a05/ping"      class="btn btn-danger btn-sm">Inyección de Comandos</a>
+      <a href="/solutions/a05" class="btn btn-outline-secondary btn-sm">Solución</a>
     </div>
   </div>
 </div>

@@ -1,32 +1,32 @@
 {% extends "base.html" %}
-{% block title %}A03 – Supply Chain Failures{% endblock %}
+{% block title %}A03 – Fallos en la Cadena de Suministro{% endblock %}
 {% block content %}
-<h2><span class="badge bg-warning text-dark">A03:2025</span> Software Supply Chain Failures</h2>
-<p class="text-secondary">Components with known vulnerabilities, unsafe deserialization of config files, unsigned plugins.</p>
+<h2><span class="badge bg-warning text-dark">A03:2025</span> Fallos en la Cadena de Suministro</h2>
+<p class="text-secondary">Componentes con vulnerabilidades conocidas, deserialización insegura de archivos de config, plugins sin firma.</p>
 
 <div class="card mb-3">
-  <div class="card-header text-warning fw-bold">Challenges</div>
+  <div class="card-header text-warning fw-bold">Retos</div>
   <div class="card-body">
     <ol>
-      <li><strong>Dependency audit:</strong> Run <code>/a03/audit</code> — identify CVEs in <code>Pillow</code> and <code>PyYAML</code>.</li>
-      <li><strong>Unsafe YAML:</strong> Use <code>/a03/parse-config</code> — submit a YAML payload using <code>!!python/object/apply:os.system</code>.</li>
-      <li><strong>Unsigned plugin:</strong> Observe <code>/a03/install-plugin</code> — no integrity check before "installing".</li>
+      <li><strong>Auditoría de dependencias:</strong> Ejecuta <code>/a03/audit</code> — identifica los CVEs en <code>Pillow</code> y <code>PyYAML</code>.</li>
+      <li><strong>YAML inseguro:</strong> Usa <code>/a03/parse-config</code> — envía un payload con <code>!!python/object/apply:os.system</code>.</li>
+      <li><strong>Plugin sin firma:</strong> Observa <code>/a03/install-plugin</code> — no se realiza ninguna verificación de integridad antes de "instalar".</li>
     </ol>
     <div class="d-flex gap-2 flex-wrap mt-3">
-      <a href="/a03/audit"          class="btn btn-warning btn-sm text-dark">Run pip-audit</a>
-      <a href="/a03/parse-config"   class="btn btn-warning btn-sm text-dark">YAML Parser</a>
-      <a href="/a03/install-plugin" class="btn btn-warning btn-sm text-dark">Plugin Loader</a>
-      <a href="/solutions/a03"      class="btn btn-outline-secondary btn-sm">Solution</a>
+      <a href="/a03/audit"          class="btn btn-warning btn-sm text-dark">Ejecutar pip-audit</a>
+      <a href="/a03/parse-config"   class="btn btn-warning btn-sm text-dark">Parser YAML</a>
+      <a href="/a03/install-plugin" class="btn btn-warning btn-sm text-dark">Instalador de Plugins</a>
+      <a href="/solutions/a03"      class="btn btn-outline-secondary btn-sm">Solución</a>
     </div>
   </div>
 </div>
 
 <div class="card">
-  <div class="card-header">Vulnerable Packages (requirements.txt)</div>
+  <div class="card-header">Paquetes vulnerables (requirements.txt)</div>
   <div class="card-body">
     <pre>Pillow==9.3.0   # CVE-2023-44271, CVE-2023-50447
-PyYAML==5.3.1   # CVE-2020-14343 (arbitrary code via yaml.load)</pre>
-    <p class="text-secondary small">These versions are intentionally pinned to demonstrate supply chain risk.</p>
+PyYAML==5.3.1   # CVE-2020-14343 (ejecución de código vía yaml.load)</pre>
+    <p class="text-secondary small">Estas versiones están fijadas intencionalmente para demostrar el riesgo de la cadena de suministro.</p>
   </div>
 </div>
 {% endblock %}

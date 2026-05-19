@@ -1,27 +1,27 @@
 {% extends "base.html" %}
-{% block title %}A08 – Integrity Failures{% endblock %}
+{% block title %}A08 – Fallos de Integridad{% endblock %}
 {% block content %}
-<h2><span class="badge bg-danger">A08:2025</span> Software & Data Integrity Failures</h2>
-<p class="text-secondary">Code and data without integrity verification — insecure deserialization, unsigned updates.</p>
+<h2><span class="badge bg-danger">A08:2025</span> Fallos de Integridad de Software y Datos</h2>
+<p class="text-secondary">Código y datos sin verificación de integridad — deserialización insegura, actualizaciones sin firma.</p>
 <div class="card mb-3">
-  <div class="card-header text-danger fw-bold">Challenges</div>
+  <div class="card-header text-danger fw-bold">Retos</div>
   <div class="card-body">
     <ol>
-      <li><strong>Pickle RCE:</strong> The <code>/a08/deserialize</code> endpoint deserializes base64-encoded pickle data.
-        Generate a malicious payload using <code>/a08/generate-payload</code> and send it to achieve code execution.</li>
-      <li><strong>Unsigned Update:</strong> Observe how <code>/a08/update</code> applies a version bump with no hash or signature verification.</li>
+      <li><strong>RCE con Pickle:</strong> El endpoint <code>/a08/deserialize</code> deserializa datos pickle en base64.
+        Genera un payload malicioso en <code>/a08/generate-payload</code> y envíalo para lograr ejecución de código.</li>
+      <li><strong>Actualización sin firma:</strong> Observa cómo <code>/a08/update</code> aplica una nueva versión sin verificar hash ni firma.</li>
     </ol>
     <div class="d-flex gap-2 flex-wrap mt-3">
-      <a href="/a08/generate-payload" class="btn btn-danger btn-sm">Generate Payload</a>
-      <a href="/a08/deserialize"      class="btn btn-danger btn-sm">Deserialize</a>
-      <a href="/a08/update"           class="btn btn-danger btn-sm">Unsigned Update</a>
-      <a href="/solutions/a08"        class="btn btn-outline-secondary btn-sm">Solution</a>
+      <a href="/a08/generate-payload" class="btn btn-danger btn-sm">Generar Payload</a>
+      <a href="/a08/deserialize"      class="btn btn-danger btn-sm">Deserializar</a>
+      <a href="/a08/update"           class="btn btn-danger btn-sm">Actualización Sin Firma</a>
+      <a href="/solutions/a08"        class="btn btn-outline-secondary btn-sm">Solución</a>
     </div>
   </div>
 </div>
 <div class="alert alert-dark">
-  <strong>How pickle RCE works:</strong> Python's <code>pickle</code> module can serialize arbitrary objects,
-  including ones whose <code>__reduce__</code> method runs OS commands when deserialized.
-  <strong>Never deserialize untrusted pickle data.</strong>
+  <strong>¿Cómo funciona el RCE con pickle?</strong> El módulo <code>pickle</code> de Python puede serializar objetos arbitrarios,
+  incluyendo aquellos cuyo método <code>__reduce__</code> ejecuta comandos del sistema al deserializar.
+  <strong>Nunca deserialices datos pickle de fuentes no confiables.</strong>
 </div>
 {% endblock %}

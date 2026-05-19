@@ -1,26 +1,26 @@
 {% extends "base.html" %}
-{% block title %}A08 – Pickle Deserialize{% endblock %}
+{% block title %}A08 – Deserialización{% endblock %}
 {% block content %}
-<h4><a href="/a08/">A08</a> — Insecure Deserialization
+<h4><a href="/a08/">A08</a> — Deserialización Insegura
   <span class="badge bg-danger ms-2">Pickle RCE</span>
 </h4>
 <div class="row">
   <div class="col-md-6">
     <div class="card mb-3">
-      <div class="card-header">Submit Pickle Payload (base64)</div>
+      <div class="card-header">Enviar Payload Pickle (base64)</div>
       <div class="card-body">
         <form method="post">
           <textarea name="data" class="form-control font-monospace mb-2" rows="5"
-                    placeholder="base64-encoded pickle data">{{ request.form.get('data','') }}</textarea>
-          <button class="btn btn-danger w-100">Deserialize</button>
+                    placeholder="datos pickle en base64">{{ request.form.get('data','') }}</textarea>
+          <button class="btn btn-danger w-100">Deserializar</button>
         </form>
       </div>
     </div>
     <div class="card">
-      <div class="card-header text-secondary small">Safe payload (for reference)</div>
+      <div class="card-header text-secondary small">Payload seguro (referencia)</div>
       <div class="card-body">
         <pre class="small">{{ payload_hint }}</pre>
-        <small class="text-secondary">This is a benign <code>{'user': 'alice', 'role': 'admin'}</code> dict.</small>
+        <small class="text-secondary">Este es un dict benigno: <code>{'user': 'alice', 'role': 'admin'}</code></small>
       </div>
     </div>
   </div>
@@ -28,17 +28,17 @@
     {% if error %}<div class="alert alert-danger">{{ error }}</div>{% endif %}
     {% if result is not none %}
     <div class="card">
-      <div class="card-header text-warning">Deserialized Result</div>
+      <div class="card-header text-warning">Resultado Deserializado</div>
       <div class="card-body"><pre>{{ result }}</pre></div>
     </div>
     {% endif %}
     <div class="card mt-3">
-      <div class="card-header text-danger">Generate & send malicious payload</div>
+      <div class="card-header text-danger">Cómo generar y enviar un payload malicioso</div>
       <div class="card-body small">
-        <p>1. Go to <a href="/a08/generate-payload">/a08/generate-payload</a> with command <code>id</code></p>
-        <p>2. Copy the base64 output</p>
-        <p>3. Paste it here and click Deserialize</p>
-        <p>The server will execute your command and you'll see the output in the result.</p>
+        <p>1. Ve a <a href="/a08/generate-payload">/a08/generate-payload</a> con el comando <code>id</code></p>
+        <p>2. Copia el output en base64</p>
+        <p>3. Pégalo aquí y haz clic en Deserializar</p>
+        <p>El servidor ejecutará tu comando y verás el resultado.</p>
       </div>
     </div>
   </div>

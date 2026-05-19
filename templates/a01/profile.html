@@ -1,36 +1,36 @@
 {% extends "base.html" %}
-{% block title %}A01 – Profile{% endblock %}
+{% block title %}A01 – Perfil de Usuario{% endblock %}
 {% block content %}
-<h4><a href="/a01/">A01</a> — User Profile
+<h4><a href="/a01/">A01</a> — Perfil de Usuario
   <span class="badge bg-danger ms-2">IDOR</span>
 </h4>
 {% if current_user %}
-<p class="text-secondary">Logged in as: <code>{{ current_user.username }}</code>
-  — <a href="/a01/logout">logout</a></p>
+<p class="text-secondary">Sesión activa como: <code>{{ current_user.username }}</code>
+  — <a href="/a01/logout">cerrar sesión</a></p>
 {% endif %}
 
 <div class="card mb-3" style="max-width:500px">
-  <div class="card-header">Profile #{{ user.id }}</div>
+  <div class="card-header">Perfil #{{ user.id }}</div>
   <div class="card-body">
     <table class="table table-dark table-sm mb-0">
       <tr><th>ID</th><td>{{ user.id }}</td></tr>
-      <tr><th>Username</th><td>{{ user.username }}</td></tr>
-      <tr><th>Email</th><td>{{ user.email }}</td></tr>
-      <tr><th>Role</th><td><span class="badge bg-{{ 'danger' if user.role == 'admin' else 'secondary' }}">{{ user.role }}</span></td></tr>
-      <tr><th>Credit Card</th><td class="text-danger fw-bold">{{ user.credit_card }}</td></tr>
+      <tr><th>Usuario</th><td>{{ user.username }}</td></tr>
+      <tr><th>Correo</th><td>{{ user.email }}</td></tr>
+      <tr><th>Rol</th><td><span class="badge bg-{{ 'danger' if user.role == 'admin' else 'secondary' }}">{{ user.role }}</span></td></tr>
+      <tr><th>Tarjeta de crédito</th><td class="text-danger fw-bold">{{ user.credit_card }}</td></tr>
     </table>
   </div>
 </div>
 
 <div class="alert alert-dark">
-  <strong>Try:</strong> Change the URL to <code>/a01/profile/2</code> or <code>/a01/profile/3</code>
+  <strong>Prueba:</strong> Cambia el número en la URL: <code>/a01/profile/2</code> o <code>/a01/profile/3</code>
 </div>
 
 <div class="d-flex gap-2">
-  <a href="/a01/profile/1" class="btn btn-sm btn-outline-secondary">Profile 1</a>
-  <a href="/a01/profile/2" class="btn btn-sm btn-outline-secondary">Profile 2</a>
-  <a href="/a01/profile/3" class="btn btn-sm btn-outline-secondary">Profile 3</a>
-  <a href="/a01/admin" class="btn btn-sm btn-outline-danger">Admin Panel</a>
-  <a href="/a01/my-orders" class="btn btn-sm btn-outline-secondary">My Orders</a>
+  <a href="/a01/profile/1" class="btn btn-sm btn-outline-secondary">Perfil 1</a>
+  <a href="/a01/profile/2" class="btn btn-sm btn-outline-secondary">Perfil 2</a>
+  <a href="/a01/profile/3" class="btn btn-sm btn-outline-secondary">Perfil 3</a>
+  <a href="/a01/admin" class="btn btn-sm btn-outline-danger">Panel Admin</a>
+  <a href="/a01/my-orders" class="btn btn-sm btn-outline-secondary">Mis Pedidos</a>
 </div>
 {% endblock %}

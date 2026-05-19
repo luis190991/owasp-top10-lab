@@ -1,34 +1,34 @@
 {% extends "base.html" %}
-{% block title %}OWASP Top 10:2025 — Lab Index{% endblock %}
+{% block title %}Lab OWASP Top 10:2025 — Índice{% endblock %}
 {% block content %}
 <div class="row mb-4">
   <div class="col">
-    <h1 class="h3">OWASP Top 10:2025 — Security Lab</h1>
+    <h1 class="h3">Lab OWASP Top 10:2025 — Seguridad Web</h1>
     <p class="text-secondary">
-      Each lab contains a <span class="badge bg-danger">VULNERABLE</span> application for you to exploit
-      and understand, plus a <span class="badge bg-success">FIXED</span> reference implementation.
-      Read the challenge description before attacking.
+      Cada lab contiene una aplicación <span class="badge bg-danger">VULNERABLE</span> para que la explotes y entiendas,
+      más una implementación <span class="badge bg-success">CORREGIDA</span> de referencia.
+      Lee el reto antes de atacar.
     </p>
     <div class="alert alert-dark">
-      <strong>Setup:</strong> DB initialized automatically on startup.
-      Run <code>python run.py</code> to restart.
-      Solutions are in <code>solutions/</code>.
+      <strong>Inicio rápido:</strong> La base de datos se inicializa automáticamente al arrancar.
+      Ejecuta <code>python run.py</code> para reiniciar.
+      Las soluciones están en <code>solutions/</code> o en <code>/solutions/a01</code>…<code>/solutions/a10</code>.
     </div>
   </div>
 </div>
 
 <div class="row g-3">
   {% set labs = [
-    ("A01", "Broken Access Control",          "/a01/", "danger",  "IDOR, missing role checks, horizontal/vertical privilege escalation"),
-    ("A02", "Security Misconfiguration",       "/a02/", "warning", "Debug mode, exposed config, default credentials, verbose headers"),
-    ("A03", "Software Supply Chain Failures",  "/a03/", "warning", "Vulnerable dependencies (Pillow, PyYAML), unsafe yaml.load, unsigned plugins"),
-    ("A04", "Cryptographic Failures",          "/a04/", "danger",  "MD5 passwords, base64 'encryption', hardcoded keys, predictable tokens"),
-    ("A05", "Injection",                       "/a05/", "danger",  "SQL injection (auth bypass + UNION), OS command injection"),
-    ("A06", "Insecure Design",                 "/a06/", "warning", "Predictable reset tokens, business logic flaw, mass assignment"),
-    ("A07", "Authentication Failures",         "/a07/", "danger",  "No brute-force protection, sequential session IDs, plaintext cookie"),
-    ("A08", "Software & Data Integrity",       "/a08/", "danger",  "Pickle deserialization RCE, unsigned update, CI/CD webhook abuse"),
-    ("A09", "Logging & Alerting Failures",     "/a09/", "secondary","Password in logs, no failure events, no anomaly detection"),
-    ("A10", "Mishandling of Exceptions",       "/a10/", "warning", "Stack trace exposure, path traversal via errors, SQL error leakage"),
+    ("A01", "Control de Acceso Roto",             "/a01/", "danger",  "IDOR, falta de verificación de rol, escalación de privilegios horizontal y vertical"),
+    ("A02", "Mala Configuración de Seguridad",     "/a02/", "warning", "Modo debug, config expuesta, credenciales por defecto, cabeceras verbosas"),
+    ("A03", "Fallos en la Cadena de Suministro",   "/a03/", "warning", "Dependencias vulnerables (Pillow, PyYAML), yaml.load inseguro, plugins sin firma"),
+    ("A04", "Fallos Criptográficos",               "/a04/", "danger",  "Contraseñas en MD5, 'cifrado' en base64, llaves hardcodeadas, tokens predecibles"),
+    ("A05", "Inyección",                           "/a05/", "danger",  "Inyección SQL (bypass de auth + UNION), inyección de comandos OS"),
+    ("A06", "Diseño Inseguro",                     "/a06/", "warning", "Token de reset predecible, fallo de lógica de negocio, asignación masiva"),
+    ("A07", "Fallos de Autenticación",             "/a07/", "danger",  "Sin protección contra fuerza bruta, IDs de sesión secuenciales, cookie en texto plano"),
+    ("A08", "Fallos de Integridad",                "/a08/", "danger",  "RCE por deserialización Pickle, actualización sin verificar hash/firma"),
+    ("A09", "Fallos de Registro y Alertas",        "/a09/", "secondary","Contraseñas en logs, fallos silenciosos, sin detección de anomalías"),
+    ("A10", "Manejo Incorrecto de Excepciones",    "/a10/", "warning", "Stack trace expuesto, traversal de rutas vía errores, filtración de errores SQL"),
   ] %}
 
   {% for id, name, url, color, desc in labs %}

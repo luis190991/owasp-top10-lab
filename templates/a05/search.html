@@ -1,21 +1,21 @@
 {% extends "base.html" %}
-{% block title %}A05 – SQLi Search{% endblock %}
+{% block title %}A05 – SQLi Búsqueda{% endblock %}
 {% block content %}
-<h4><a href="/a05/">A05</a> — SQL Injection: UNION Extraction</h4>
+<h4><a href="/a05/">A05</a> — Inyección SQL: Extracción UNION</h4>
 <div class="row">
   <div class="col-md-5">
     <div class="card mb-3">
       <div class="card-body">
         <form method="post">
-          <label class="form-label">Search Products</label>
+          <label class="form-label">Buscar Productos</label>
           <input name="term" class="form-control font-monospace mb-2"
                  value="{{ request.form.get('term','') }}" placeholder="Laptop">
-          <button class="btn btn-danger w-100">Search</button>
+          <button class="btn btn-danger w-100">Buscar</button>
         </form>
       </div>
     </div>
     <div class="card">
-      <div class="card-header text-danger small">UNION payloads</div>
+      <div class="card-header text-danger small">Payloads UNION</div>
       <div class="card-body">
         <pre class="small">' UNION SELECT id,username,password,role
 FROM a05_users--
@@ -28,7 +28,7 @@ FROM a05_products WHERE 1=1--</pre>
   <div class="col-md-7">
     {% if query %}
     <div class="card mb-3">
-      <div class="card-header text-secondary small">Query Executed</div>
+      <div class="card-header text-secondary small">Consulta Ejecutada</div>
       <div class="card-body"><pre class="small">{{ query }}</pre></div>
     </div>
     {% endif %}

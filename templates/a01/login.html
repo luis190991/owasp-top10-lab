@@ -1,16 +1,16 @@
 {% extends "base.html" %}
-{% block title %}A01 – Login{% endblock %}
+{% block title %}A01 – Iniciar Sesión{% endblock %}
 {% block content %}
-<h4><a href="/a01/">A01</a> — Login</h4>
+<h4><a href="/a01/">A01</a> — Iniciar Sesión</h4>
 <div class="card" style="max-width:400px">
   <div class="card-body">
     {% if error %}<div class="alert alert-danger">{{ error }}</div>{% endif %}
     <form method="post">
       <div class="mb-3">
-        <label class="form-label">Username</label>
+        <label class="form-label">Nombre de usuario</label>
         <input name="username" class="form-control" placeholder="alice / bob / admin">
       </div>
-      <button class="btn btn-danger w-100">Login (no password required)</button>
+      <button class="btn btn-danger w-100">Entrar (sin contraseña)</button>
     </form>
   </div>
 </div>

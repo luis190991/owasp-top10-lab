@@ -1,28 +1,28 @@
 {% extends "base.html" %}
-{% block title %}A09 – Logging Failures{% endblock %}
+{% block title %}A09 – Fallos de Registro y Alertas{% endblock %}
 {% block content %}
-<h2><span class="badge bg-secondary">A09:2025</span> Security Logging & Alerting Failures</h2>
-<p class="text-secondary">Insufficient logging prevents detection of breaches and blocks forensic analysis.</p>
+<h2><span class="badge bg-secondary">A09:2025</span> Fallos de Registro y Alertas de Seguridad</h2>
+<p class="text-secondary">El registro insuficiente impide detectar brechas y bloquea el análisis forense.</p>
 <div class="card mb-3">
-  <div class="card-header text-secondary fw-bold">Challenges</div>
+  <div class="card-header text-secondary fw-bold">Retos</div>
   <div class="card-body">
     <ol>
-      <li><strong>Password in logs:</strong> Login at <code>/a09/login-bad</code> (fail and succeed).
-        Check <a href="/a09/view-logs">/a09/view-logs</a> — your password is in the log!</li>
-      <li><strong>Silent failure:</strong> Compare logs from <code>/a09/login-bad</code> vs <code>/a09/login-good</code>.
-        Notice auth failures are invisible in the bad logger.</li>
-      <li><strong>Large transfer:</strong> Submit a $9,999 transfer at <code>/a09/transfer-bad</code> — no alert.
-        Then do the same at <code>/a09/transfer-good</code> — anomaly detected.</li>
-      <li><strong>Full CC in logs:</strong> Submit a transfer with a card number at <code>/a09/transfer-bad</code>.
-        Find the full card number in the logs.</li>
+      <li><strong>Contraseña en logs:</strong> Inicia sesión en <code>/a09/login-bad</code> (falla y luego acierta).
+        Revisa <a href="/a09/view-logs">/a09/view-logs</a> — ¡tu contraseña está en el log!</li>
+      <li><strong>Fallo silencioso:</strong> Compara los logs de <code>/a09/login-bad</code> vs <code>/a09/login-good</code>.
+        Los intentos fallidos son invisibles en el logger incorrecto.</li>
+      <li><strong>Transferencia grande:</strong> Envía una transferencia de $9,999 en <code>/a09/transfer-bad</code> — sin alerta.
+        Repite en <code>/a09/transfer-good</code> — anomalía detectada.</li>
+      <li><strong>Tarjeta completa en logs:</strong> Envía una transferencia con número de tarjeta en <code>/a09/transfer-bad</code>.
+        Encuentra el número completo en los logs.</li>
     </ol>
     <div class="d-flex gap-2 flex-wrap mt-3">
-      <a href="/a09/login-bad"      class="btn btn-secondary btn-sm">Login (BAD)</a>
-      <a href="/a09/login-good"     class="btn btn-success btn-sm">Login (GOOD)</a>
-      <a href="/a09/transfer-bad"   class="btn btn-secondary btn-sm">Transfer (BAD)</a>
-      <a href="/a09/transfer-good"  class="btn btn-success btn-sm">Transfer (GOOD)</a>
-      <a href="/a09/view-logs"      class="btn btn-outline-light btn-sm">View Logs</a>
-      <a href="/solutions/a09"      class="btn btn-outline-secondary btn-sm">Solution</a>
+      <a href="/a09/login-bad"      class="btn btn-secondary btn-sm">Login (MAL)</a>
+      <a href="/a09/login-good"     class="btn btn-success btn-sm">Login (BIEN)</a>
+      <a href="/a09/transfer-bad"   class="btn btn-secondary btn-sm">Transferencia (MAL)</a>
+      <a href="/a09/transfer-good"  class="btn btn-success btn-sm">Transferencia (BIEN)</a>
+      <a href="/a09/view-logs"      class="btn btn-outline-light btn-sm">Ver Logs</a>
+      <a href="/solutions/a09"      class="btn btn-outline-secondary btn-sm">Solución</a>
     </div>
   </div>
 </div>

@@ -1,25 +1,25 @@
 {% extends "base.html" %}
-{% block title %}A02 – Security Misconfiguration{% endblock %}
+{% block title %}A02 – Mala Configuración de Seguridad{% endblock %}
 {% block content %}
-<h2><span class="badge bg-warning text-dark">A02:2025</span> Security Misconfiguration</h2>
-<p class="text-secondary">Missing hardening, unnecessary features enabled, default credentials, verbose errors.</p>
+<h2><span class="badge bg-warning text-dark">A02:2025</span> Mala Configuración de Seguridad</h2>
+<p class="text-secondary">Endurecimiento faltante, funciones innecesarias habilitadas, credenciales por defecto, errores verbosos.</p>
 
 <div class="card mb-3">
-  <div class="card-header text-warning fw-bold">Challenges</div>
+  <div class="card-header text-warning fw-bold">Retos</div>
   <div class="card-body">
     <ol>
-      <li><strong>Exposed config:</strong> Hit <code>/a02/config</code> — find the <code>SECRET_KEY</code>.</li>
-      <li><strong>Backup file:</strong> Access <code>/a02/backup.cfg</code> — extract database credentials and API keys.</li>
-      <li><strong>Default credentials:</strong> Login at <code>/a02/login</code> using default creds (<code>admin:admin</code>).</li>
-      <li><strong>Verbose headers:</strong> Inspect response headers for server/version leakage (use browser DevTools or <code>curl -I</code>).</li>
-      <li><strong>Internal API:</strong> Call <code>/a02/api/data</code> — what internal info is exposed?</li>
+      <li><strong>Config expuesta:</strong> Accede a <code>/a02/config</code> — encuentra el <code>SECRET_KEY</code>.</li>
+      <li><strong>Archivo de respaldo:</strong> Accede a <code>/a02/backup.cfg</code> — extrae credenciales de base de datos y llaves de API.</li>
+      <li><strong>Credenciales por defecto:</strong> Inicia sesión en <code>/a02/login</code> usando las creds por defecto (<code>admin:admin</code>).</li>
+      <li><strong>Cabeceras verbosas:</strong> Inspecciona los headers de respuesta (DevTools del navegador o <code>curl -I</code>). ¿Qué tecnologías se revelan?</li>
+      <li><strong>API interna:</strong> Llama a <code>/a02/api/data</code> — ¿qué información interna queda expuesta?</li>
     </ol>
     <div class="d-flex gap-2 flex-wrap mt-3">
       <a href="/a02/config"     class="btn btn-warning btn-sm text-dark">/config</a>
       <a href="/a02/backup.cfg" class="btn btn-warning btn-sm text-dark">/backup.cfg</a>
       <a href="/a02/login"      class="btn btn-warning btn-sm text-dark">/login</a>
       <a href="/a02/api/data"   class="btn btn-warning btn-sm text-dark">/api/data</a>
-      <a href="/solutions/a02"  class="btn btn-outline-secondary btn-sm">Solution</a>
+      <a href="/solutions/a02"  class="btn btn-outline-secondary btn-sm">Solución</a>
     </div>
   </div>
 </div>

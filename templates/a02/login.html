@@ -1,7 +1,7 @@
 {% extends "base.html" %}
-{% block title %}A02 – Login{% endblock %}
+{% block title %}A02 – Iniciar Sesión{% endblock %}
 {% block content %}
-<h4><a href="/a02/">A02</a> — Login with Default Credentials</h4>
+<h4><a href="/a02/">A02</a> — Login con Credenciales por Defecto</h4>
 <div class="card" style="max-width:420px">
   <div class="card-body">
     {% if message %}
@@ -9,17 +9,17 @@
     {% endif %}
     <form method="post">
       <div class="mb-3">
-        <label class="form-label">Username</label>
+        <label class="form-label">Usuario</label>
         <input name="username" class="form-control" placeholder="admin">
       </div>
       <div class="mb-3">
-        <label class="form-label">Password</label>
+        <label class="form-label">Contraseña</label>
         <input name="password" type="password" class="form-control" placeholder="admin">
       </div>
-      <button class="btn btn-warning text-dark w-100">Login</button>
+      <button class="btn btn-warning text-dark w-100">Iniciar Sesión</button>
     </form>
     <hr>
-    <small class="text-secondary">Hint: default credentials were never changed.</small>
+    <small class="text-secondary">Pista: las credenciales por defecto nunca fueron cambiadas.</small>
   </div>
 </div>
 {% endblock %}

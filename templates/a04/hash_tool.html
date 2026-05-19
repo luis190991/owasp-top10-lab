@@ -1,41 +1,41 @@
 {% extends "base.html" %}
-{% block title %}A04 – Hash Tool{% endblock %}
+{% block title %}A04 – Herramienta de Hash{% endblock %}
 {% block content %}
-<h4><a href="/a04/">A04</a> — Hash Comparison Tool</h4>
+<h4><a href="/a04/">A04</a> — Comparador de Algoritmos de Hash</h4>
 <div class="card" style="max-width:600px">
   <div class="card-body">
     <form method="post">
       <div class="mb-3">
-        <label class="form-label">Value to hash</label>
+        <label class="form-label">Valor a hashear</label>
         <input name="value" class="form-control font-monospace"
                value="{{ request.form.get('value','password123') }}">
       </div>
-      <button class="btn btn-danger w-100">Hash It</button>
+      <button class="btn btn-danger w-100">Calcular Hash</button>
     </form>
     {% if result %}
     <hr>
     <table class="table table-dark table-sm mt-3">
-      <thead><tr><th>Algorithm</th><th>Hash</th><th>Security</th></tr></thead>
+      <thead><tr><th>Algoritmo</th><th>Hash</th><th>Seguridad</th></tr></thead>
       <tbody>
         <tr>
           <td>MD5</td>
           <td class="font-monospace text-danger small">{{ result.md5 }}</td>
-          <td><span class="badge bg-danger">Broken</span></td>
+          <td><span class="badge bg-danger">Roto</span></td>
         </tr>
         <tr>
           <td>SHA-1</td>
           <td class="font-monospace text-warning small">{{ result.sha1 }}</td>
-          <td><span class="badge bg-warning text-dark">Weak</span></td>
+          <td><span class="badge bg-warning text-dark">Débil</span></td>
         </tr>
         <tr>
           <td>SHA-256</td>
           <td class="font-monospace text-secondary small">{{ result.sha256 }}</td>
-          <td><span class="badge bg-secondary">Better (not for passwords)</span></td>
+          <td><span class="badge bg-secondary">Mejor (no para contraseñas)</span></td>
         </tr>
       </tbody>
     </table>
-    <p class="text-secondary small">For passwords use <strong>bcrypt</strong>, <strong>scrypt</strong>,
-    or <strong>argon2</strong> — they are slow by design and include per-user salt.</p>
+    <p class="text-secondary small">Para contraseñas usa <strong>bcrypt</strong>, <strong>scrypt</strong>
+    o <strong>argon2</strong> — son lentos por diseño e incluyen sal por usuario.</p>
     {% endif %}
   </div>
 </div>

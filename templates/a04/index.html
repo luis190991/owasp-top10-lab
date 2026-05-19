@@ -1,24 +1,24 @@
 {% extends "base.html" %}
-{% block title %}A04 – Cryptographic Failures{% endblock %}
+{% block title %}A04 – Fallos Criptográficos{% endblock %}
 {% block content %}
-<h2><span class="badge bg-danger">A04:2025</span> Cryptographic Failures</h2>
-<p class="text-secondary">Sensitive data exposed due to weak or missing cryptography.</p>
+<h2><span class="badge bg-danger">A04:2025</span> Fallos Criptográficos</h2>
+<p class="text-secondary">Datos sensibles expuestos por criptografía débil o ausente.</p>
 
 <div class="card mb-3">
-  <div class="card-header text-danger fw-bold">Challenges</div>
+  <div class="card-header text-danger fw-bold">Retos</div>
   <div class="card-body">
     <ol>
-      <li><strong>Crack MD5:</strong> Visit <code>/a04/hashes</code> — crack the stored MD5 hashes using a rainbow table or <code>hashcat</code>.</li>
-      <li><strong>Decode "encryption":</strong> Use <code>/a04/store</code> — decode the base64-encoded "secret" data.</li>
-      <li><strong>Predict token:</strong> Login at <code>/a04/login</code> — analyze the session token. Compute it for <code>bob</code> without logging in.</li>
-      <li><strong>Hash comparison:</strong> Use <code>/a04/hash-tool</code> to compare MD5 vs SHA-256 — understand why MD5 is weak for passwords.</li>
+      <li><strong>Romper MD5:</strong> Visita <code>/a04/hashes</code> — crackea los hashes MD5 usando una tabla arcoíris o <code>hashcat</code>.</li>
+      <li><strong>Decodificar el "cifrado":</strong> Usa <code>/a04/store</code> — decodifica los datos "secretos" en base64.</li>
+      <li><strong>Predecir el token:</strong> Inicia sesión en <code>/a04/login</code> — analiza el token de sesión. Calcula el token de <code>bob</code> sin iniciar sesión.</li>
+      <li><strong>Comparar algoritmos:</strong> Usa <code>/a04/hash-tool</code> para comparar MD5 vs SHA-256 y entender por qué MD5 es débil para contraseñas.</li>
     </ol>
     <div class="d-flex gap-2 flex-wrap mt-3">
-      <a href="/a04/hashes"    class="btn btn-danger btn-sm">View Hashes</a>
-      <a href="/a04/store"     class="btn btn-danger btn-sm">Base64 Store</a>
-      <a href="/a04/login"     class="btn btn-danger btn-sm">Login</a>
-      <a href="/a04/hash-tool" class="btn btn-danger btn-sm">Hash Tool</a>
-      <a href="/solutions/a04" class="btn btn-outline-secondary btn-sm">Solution</a>
+      <a href="/a04/hashes"    class="btn btn-danger btn-sm">Ver Hashes</a>
+      <a href="/a04/store"     class="btn btn-danger btn-sm">Almacén Base64</a>
+      <a href="/a04/login"     class="btn btn-danger btn-sm">Iniciar Sesión</a>
+      <a href="/a04/hash-tool" class="btn btn-danger btn-sm">Herramienta de Hash</a>
+      <a href="/solutions/a04" class="btn btn-outline-secondary btn-sm">Solución</a>
     </div>
   </div>
 </div>
