@@ -1,0 +1,16 @@
+# Core
+flask==3.0.3
+markdown==3.6
+werkzeug==3.0.3
+
+# Hashing / crypto demos
+pycryptodome==3.20.0
+
+# Supply chain audit tool
+pip-audit==2.7.3
+
+# Intentionally outdated packages for A03 - Supply Chain Lab
+# These have known CVEs - educational purposes only
+Pillow==9.3.0       # CVE-2023-44271, CVE-2023-50447
+PyYAML==5.3.1       # CVE-2020-14343 (yaml.load without Loader)
+requests>=2.28.0    # used across labs

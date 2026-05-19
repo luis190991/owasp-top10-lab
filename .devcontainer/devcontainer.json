@@ -1,0 +1,25 @@
+{
+  "name": "OWASP Top 10 Lab",
+  "image": "mcr.microsoft.com/devcontainers/python:3.11",
+  "forwardPorts": [5000],
+  "portsAttributes": {
+    "5000": {
+      "label": "OWASP Lab",
+      "onAutoForward": "openBrowser"
+    }
+  },
+  "postCreateCommand": "pip install -r requirements.txt && python run.py --init-db",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.debugpy",
+        "humao.rest-client"
+      ],
+      "settings": {
+        "python.defaultInterpreterPath": "/usr/local/bin/python",
+        "terminal.integrated.defaultProfile.linux": "bash"
+      }
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}A06 – Insecure Design{% endblock %}
+{% block content %}
+<h2><span class="badge bg-warning text-dark">A06:2025</span> Insecure Design</h2>
+<p class="text-secondary">Missing or ineffective control design — security is not considered during architecture.</p>
+<div class="card mb-3">
+  <div class="card-header text-warning fw-bold">Challenges</div>
+  <div class="card-body">
+    <ol>
+      <li><strong>Predictable Reset Token:</strong> Compute the reset token for <code>admin</code> without requesting it.
+        <br><small class="text-secondary">Token = MD5(<em>username</em> + <code>corp2024</code>)</small></li>
+      <li><strong>Business Logic — Negative Cart:</strong> Add a negative quantity of an item. What happens to the total?</li>
+      <li><strong>Mass Assignment:</strong> Login as <code>alice</code>, then POST to <code>/a06/update-profile</code> with <code>role=admin</code> or <code>balance=99999</code>.</li>
+    </ol>
+    <div class="d-flex gap-2 flex-wrap mt-3">
+      <a href="/a06/login"           class="btn btn-warning btn-sm text-dark">Login</a>
+      <a href="/a06/forgot-password" class="btn btn-warning btn-sm text-dark">Forgot Password</a>
+      <a href="/a06/reset-password"  class="btn btn-warning btn-sm text-dark">Reset Password</a>
+      <a href="/a06/cart"            class="btn btn-warning btn-sm text-dark">Cart (Logic Flaw)</a>
+      <a href="/solutions/a06"       class="btn btn-outline-secondary btn-sm">Solution</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

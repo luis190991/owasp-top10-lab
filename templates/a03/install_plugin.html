@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}A03 – Plugin Loader{% endblock %}
+{% block content %}
+<h4><a href="/a03/">A03</a> — Plugin Loader (No Integrity Check)</h4>
+<div class="card mb-3">
+  <div class="card-body">
+    {% if message %}
+    <div class="alert alert-warning">{{ message }}</div>
+    {% endif %}
+    <form method="post">
+      <label class="form-label">Select Plugin</label>
+      <select name="plugin" class="form-select mb-3">
+        {% for name, info in plugins.items() %}
+        <option value="{{ name }}">{{ name }} v{{ info.version }}</option>
+        {% endfor %}
+      </select>
+      <button class="btn btn-warning text-dark">Install (No Verification)</button>
+    </form>
+  </div>
+</div>
+<div class="card">
+  <div class="card-header text-warning">Why This Is Dangerous</div>
+  <div class="card-body">
+    <p>No hash or signature is verified before executing the downloaded package.
+    An attacker who compromises <code>plugins.internal</code> (or poisons the DNS)
+    can deliver malicious code that runs with full application privileges.</p>
+    <p class="text-secondary small">Fix: always verify <code>sha256</code> of downloaded artifacts
+    and check a cryptographic signature before executing.</p>
+  </div>
+</div>
+{% endblock %}

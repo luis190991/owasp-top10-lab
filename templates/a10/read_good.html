@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}A10 – Read File (GOOD){% endblock %}
+{% block content %}
+<h4><a href="/a10/">A10</a> — Read File
+  <span class="badge bg-success ms-2">Safe path + generic error</span>
+</h4>
+<div class="alert alert-dark mb-3">
+  Try: <a href="/a10/read-good?file=../../etc/passwd">/a10/read-good?file=../../etc/passwd</a>
+  — safe dir is enforced, you'll get "Access denied".
+</div>
+{% if content %}
+<div class="card mb-3">
+  <div class="card-header text-success">File Content</div>
+  <div class="card-body"><pre class="small">{{ content }}</pre></div>
+</div>
+{% endif %}
+{% if error %}
+<div class="alert alert-danger">{{ error }}</div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}A06 – Cart{% endblock %}
+{% block content %}
+<h4><a href="/a06/">A06</a> — Shopping Cart
+  <span class="badge bg-warning text-dark ms-2">Business Logic Flaw</span>
+</h4>
+<div class="row">
+  <div class="col-md-5">
+    <div class="card mb-3">
+      <div class="card-body">
+        <form method="post">
+          <div class="mb-3">
+            <label class="form-label">Item</label>
+            <select name="item" class="form-select">
+              {% for item in items %}
+              <option value="{{ item.name }}">{{ item.name }} — ${{ "%.2f"|format(item.price) }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Quantity</label>
+            <input name="quantity" type="number" class="form-control"
+                   value="{{ request.form.get('quantity', 1) }}">
+          </div>
+          <button class="btn btn-warning text-dark w-100">Add to Cart</button>
+        </form>
+        {% if message %}
+        <div class="alert alert-{{ 'danger' if total and total < 0 else 'dark' }} mt-2">
+          {{ message }}
+          {% if total and total < 0 %}
+          <br><strong>💀 Negative total — store owes you money!</strong>
+          {% endif %}
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  <div class="col-md-7">
+    <div class="card">
+      <div class="card-header text-warning">Challenge</div>
+      <div class="card-body">
+        <p>Enter a <strong>negative quantity</strong> (e.g. <code>-10</code>) and observe the subtotal.</p>
+        <p class="text-secondary small">Fix: validate <code>quantity &gt; 0</code> server-side.
+        Never rely on HTML <code>min</code> attributes or client-side checks alone.</p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

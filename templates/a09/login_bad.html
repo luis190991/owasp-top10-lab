@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}A09 – Login (BAD){% endblock %}
+{% block content %}
+<h4><a href="/a09/">A09</a> — Login
+  <span class="badge bg-danger ms-2">Logs plaintext password</span>
+</h4>
+<div class="card mb-3" style="max-width:400px">
+  <div class="card-body">
+    {% if result %}
+    <div class="alert alert-{{ 'success' if result.status=='success' else 'warning' }}">
+      {{ result.status | upper }} — check <a href="/a09/view-logs">the logs</a>!
+    </div>
+    {% endif %}
+    <form method="post">
+      <div class="mb-2">
+        <label class="form-label">Username</label>
+        <input name="username" class="form-control" placeholder="alice">
+      </div>
+      <div class="mb-2">
+        <label class="form-label">Password</label>
+        <input name="password" class="form-control" placeholder="sunshine">
+      </div>
+      <button class="btn btn-danger w-100">Login (BAD)</button>
+    </form>
+  </div>
+</div>
+<a href="/a09/view-logs" class="btn btn-outline-secondary btn-sm">→ View Logs After Login</a>
+{% endblock %}

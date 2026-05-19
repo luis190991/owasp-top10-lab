@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}A04 – Password Hashes{% endblock %}
+{% block content %}
+<h4><a href="/a04/">A04</a> — Stored Password Hashes
+  <span class="badge bg-danger ms-2">MD5</span>
+</h4>
+<div class="card mb-3">
+  <div class="card-body p-0">
+    <table class="table table-dark mb-0">
+      <thead><tr><th>ID</th><th>Username</th><th>MD5 Hash</th></tr></thead>
+      <tbody>
+        {% for u in users %}
+        <tr>
+          <td>{{ u.id }}</td>
+          <td>{{ u.username }}</td>
+          <td class="font-monospace text-warning">{{ u.password_hash }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="card">
+  <div class="card-header text-danger">Challenge: Crack these hashes</div>
+  <div class="card-body">
+    <p>Use an online tool (<a href="https://crackstation.net" target="_blank">CrackStation</a>)
+    or run locally:</p>
+    <pre>hashcat -a 0 -m 0 hashes.txt /usr/share/wordlists/rockyou.txt</pre>
+    <p class="text-secondary small">MD5 has no salt here — identical passwords produce identical hashes,
+    making rainbow table attacks trivial. Fix: use bcrypt/argon2 with per-user salt.</p>
+  </div>
+</div>
+{% endblock %}

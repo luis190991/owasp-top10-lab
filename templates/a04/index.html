@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}A04 – Cryptographic Failures{% endblock %}
+{% block content %}
+<h2><span class="badge bg-danger">A04:2025</span> Cryptographic Failures</h2>
+<p class="text-secondary">Sensitive data exposed due to weak or missing cryptography.</p>
+
+<div class="card mb-3">
+  <div class="card-header text-danger fw-bold">Challenges</div>
+  <div class="card-body">
+    <ol>
+      <li><strong>Crack MD5:</strong> Visit <code>/a04/hashes</code> — crack the stored MD5 hashes using a rainbow table or <code>hashcat</code>.</li>
+      <li><strong>Decode "encryption":</strong> Use <code>/a04/store</code> — decode the base64-encoded "secret" data.</li>
+      <li><strong>Predict token:</strong> Login at <code>/a04/login</code> — analyze the session token. Compute it for <code>bob</code> without logging in.</li>
+      <li><strong>Hash comparison:</strong> Use <code>/a04/hash-tool</code> to compare MD5 vs SHA-256 — understand why MD5 is weak for passwords.</li>
+    </ol>
+    <div class="d-flex gap-2 flex-wrap mt-3">
+      <a href="/a04/hashes"    class="btn btn-danger btn-sm">View Hashes</a>
+      <a href="/a04/store"     class="btn btn-danger btn-sm">Base64 Store</a>
+      <a href="/a04/login"     class="btn btn-danger btn-sm">Login</a>
+      <a href="/a04/hash-tool" class="btn btn-danger btn-sm">Hash Tool</a>
+      <a href="/solutions/a04" class="btn btn-outline-secondary btn-sm">Solution</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

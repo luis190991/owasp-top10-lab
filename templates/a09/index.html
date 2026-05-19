@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}A09 – Logging Failures{% endblock %}
+{% block content %}
+<h2><span class="badge bg-secondary">A09:2025</span> Security Logging & Alerting Failures</h2>
+<p class="text-secondary">Insufficient logging prevents detection of breaches and blocks forensic analysis.</p>
+<div class="card mb-3">
+  <div class="card-header text-secondary fw-bold">Challenges</div>
+  <div class="card-body">
+    <ol>
+      <li><strong>Password in logs:</strong> Login at <code>/a09/login-bad</code> (fail and succeed).
+        Check <a href="/a09/view-logs">/a09/view-logs</a> — your password is in the log!</li>
+      <li><strong>Silent failure:</strong> Compare logs from <code>/a09/login-bad</code> vs <code>/a09/login-good</code>.
+        Notice auth failures are invisible in the bad logger.</li>
+      <li><strong>Large transfer:</strong> Submit a $9,999 transfer at <code>/a09/transfer-bad</code> — no alert.
+        Then do the same at <code>/a09/transfer-good</code> — anomaly detected.</li>
+      <li><strong>Full CC in logs:</strong> Submit a transfer with a card number at <code>/a09/transfer-bad</code>.
+        Find the full card number in the logs.</li>
+    </ol>
+    <div class="d-flex gap-2 flex-wrap mt-3">
+      <a href="/a09/login-bad"      class="btn btn-secondary btn-sm">Login (BAD)</a>
+      <a href="/a09/login-good"     class="btn btn-success btn-sm">Login (GOOD)</a>
+      <a href="/a09/transfer-bad"   class="btn btn-secondary btn-sm">Transfer (BAD)</a>
+      <a href="/a09/transfer-good"  class="btn btn-success btn-sm">Transfer (GOOD)</a>
+      <a href="/a09/view-logs"      class="btn btn-outline-light btn-sm">View Logs</a>
+      <a href="/solutions/a09"      class="btn btn-outline-secondary btn-sm">Solution</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

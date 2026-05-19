@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}A02 – Login{% endblock %}
+{% block content %}
+<h4><a href="/a02/">A02</a> — Login with Default Credentials</h4>
+<div class="card" style="max-width:420px">
+  <div class="card-body">
+    {% if message %}
+    <div class="alert alert-{{ 'success' if 'SUCCESS' in message else 'danger' }}">{{ message }}</div>
+    {% endif %}
+    <form method="post">
+      <div class="mb-3">
+        <label class="form-label">Username</label>
+        <input name="username" class="form-control" placeholder="admin">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Password</label>
+        <input name="password" type="password" class="form-control" placeholder="admin">
+      </div>
+      <button class="btn btn-warning text-dark w-100">Login</button>
+    </form>
+    <hr>
+    <small class="text-secondary">Hint: default credentials were never changed.</small>
+  </div>
+</div>
+{% endblock %}

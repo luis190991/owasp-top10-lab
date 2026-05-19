@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}A03 – pip-audit{% endblock %}
+{% block content %}
+<h4><a href="/a03/">A03</a> — Dependency Audit (pip-audit)</h4>
+<div class="card">
+  <div class="card-header">Results</div>
+  <div class="card-body">
+    <pre>{{ output }}</pre>
+  </div>
+</div>
+<div class="alert alert-dark mt-3">
+  You can also run this manually: <code>pip-audit</code> or <code>pip-audit --format columns</code>
+</div>
+{% endblock %}

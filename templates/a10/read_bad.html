@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}A10 – Read File (BAD){% endblock %}
+{% block content %}
+<h4><a href="/a10/">A10</a> — Read File
+  <span class="badge bg-danger ms-2">Path traversal + stack trace</span>
+</h4>
+<div class="alert alert-dark mb-3">
+  Current file: <code>{{ filename }}</code>
+  — Try: <a href="/a10/read-bad?file=../../etc/passwd">/a10/read-bad?file=../../etc/passwd</a>
+</div>
+{% if content %}
+<div class="card mb-3">
+  <div class="card-header text-warning">File Content</div>
+  <div class="card-body"><pre class="small">{{ content }}</pre></div>
+</div>
+{% endif %}
+{% if error %}
+<div class="card">
+  <div class="card-header text-danger">Stack Trace Exposed</div>
+  <div class="card-body"><pre class="small text-danger">{{ error }}</pre></div>
+</div>
+{% endif %}
+{% endblock %}

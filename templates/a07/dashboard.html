@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}A07 – Dashboard{% endblock %}
+{% block content %}
+<h4><a href="/a07/">A07</a> — Logged In
+  <span class="badge bg-danger ms-2">Weak Session</span>
+</h4>
+<div class="card mb-3" style="max-width:500px">
+  <div class="card-body">
+    <p><strong>Username:</strong> {{ user.username }}</p>
+    <p><strong>Role:</strong> {{ user.role }}</p>
+    <p><strong>Your session_id cookie:</strong> <code class="text-warning">{{ sid }}</code></p>
+    <p class="text-secondary small">This is a sequential integer. If you logged in as the 3rd user,
+    try forging <code>session_id=1</code> or <code>session_id=2</code>.</p>
+    <div class="d-flex gap-2">
+      <a href="/a07/logout"  class="btn btn-outline-secondary btn-sm">Logout</a>
+      <a href="/a07/"        class="btn btn-outline-secondary btn-sm">Session Map</a>
+    </div>
+  </div>
+</div>
+<div class="card" style="max-width:500px">
+  <div class="card-header">All Active Sessions</div>
+  <div class="card-body">
+    <table class="table table-dark table-sm mb-0">
+      <thead><tr><th>session_id</th><th>Username</th></tr></thead>
+      <tbody>
+        {% for s, u in sessions.items() %}
+        <tr class="{{ 'table-warning' if s == sid|int else '' }}">
+          <td>{{ s }}</td><td>{{ u }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

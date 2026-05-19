@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}A08 – Unsigned Update{% endblock %}
+{% block content %}
+<h4><a href="/a08/">A08</a> — Unsigned Software Update</h4>
+<div class="card mb-3">
+  <div class="card-header">Update Manifest</div>
+  <div class="card-body">
+    <table class="table table-dark table-sm">
+      {% for k, v in manifest.items() %}
+      <tr>
+        <th>{{ k }}</th>
+        <td class="{{ 'text-danger' if v is none else '' }}">
+          {{ v if v is not none else 'None ← NOT VERIFIED' }}
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+</div>
+<div class="card mb-3">
+  <div class="card-body">
+    {% if message %}<div class="alert alert-warning">{{ message }}</div>{% endif %}
+    <form method="post">
+      <label class="form-label">Apply version</label>
+      <input name="version" class="form-control mb-2" value="{{ manifest.version }}">
+      <button class="btn btn-danger">Apply Update (No Verification)</button>
+    </form>
+  </div>
+</div>
+<div class="alert alert-dark">
+  <strong>Fix:</strong> Always verify <code>sha256</code> of downloaded artifacts.
+  For critical updates, also verify a GPG/RSA signature from a trusted key.
+</div>
+{% endblock %}

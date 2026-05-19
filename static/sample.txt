@@ -1,0 +1,2 @@
+This is a sample file served from the static directory.
+It is safe to read via /a10/read-good?file=sample.txt

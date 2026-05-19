@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}A07 – Authentication Failures{% endblock %}
+{% block content %}
+<h2><span class="badge bg-danger">A07:2025</span> Authentication Failures</h2>
+<p class="text-secondary">Broken implementation of authentication allowing attackers to assume other users' identities.</p>
+<div class="card mb-3">
+  <div class="card-header text-danger fw-bold">Challenges</div>
+  <div class="card-body">
+    <ol>
+      <li><strong>Brute Force:</strong> No lockout exists. Script a wordlist attack against the login endpoint.
+        <br><small class="text-secondary">Try passwords: <code>password, 123456, sunshine, admin123</code></small></li>
+      <li><strong>Session Prediction:</strong> Login once, note your <code>session_id</code> cookie.
+        Session IDs are sequential integers. Try forging a different ID to hijack another session.</li>
+      <li><strong>Cookie Theft:</strong> Login with "Remember Me". Inspect the <code>remember_me</code> cookie — what does it contain?</li>
+      <li><strong>No Logout Invalidation:</strong> Login, copy your session cookie, logout, then manually re-send the old cookie.</li>
+    </ol>
+    <div class="d-flex gap-2 flex-wrap mt-3">
+      <a href="/a07/login"   class="btn btn-danger btn-sm">Login</a>
+      <a href="/a07/profile" class="btn btn-danger btn-sm">Profile</a>
+      <a href="/solutions/a07" class="btn btn-outline-secondary btn-sm">Solution</a>
+    </div>
+  </div>
+</div>
+<div class="card">
+  <div class="card-header">Active Sessions (in-memory — resets on restart)</div>
+  <div class="card-body">
+    {% if sessions %}
+    <table class="table table-dark table-sm mb-0">
+      <thead><tr><th>session_id cookie</th><th>Username</th></tr></thead>
+      <tbody>
+        {% for sid, user in sessions.items() %}
+        <tr><td>{{ sid }}</td><td>{{ user }}</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <small class="text-secondary">No active sessions yet.</small>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

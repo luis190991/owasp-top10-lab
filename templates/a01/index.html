@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}A01 – Broken Access Control{% endblock %}
+{% block content %}
+<h2><span class="badge bg-danger">A01:2025</span> Broken Access Control</h2>
+<p class="text-secondary">Restrictions on what authenticated users are allowed to do are often not properly enforced.</p>
+
+<div class="card mb-3">
+  <div class="card-header text-danger fw-bold">Challenges</div>
+  <div class="card-body">
+    <ol>
+      <li><strong>IDOR — Profile:</strong> Log in as <code>alice</code>, then view Bob's profile (id=2) and the Admin's credit card (id=3).</li>
+      <li><strong>Admin panel:</strong> Access <code>/a01/admin</code> as a regular user (no admin role). List all users.</li>
+      <li><strong>IDOR — Orders:</strong> Alice has order #1; view order #2 (Bob's) and order #3 (Admin's).</li>
+    </ol>
+    <a href="/a01/login" class="btn btn-danger btn-sm">Start Lab →</a>
+    <a href="/solutions/a01" class="btn btn-outline-secondary btn-sm ms-2">View Solution</a>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">Accounts available</div>
+  <div class="card-body">
+    <table class="table table-dark table-sm">
+      <thead><tr><th>Username</th><th>Role</th><th>Note</th></tr></thead>
+      <tbody>
+        <tr><td>alice</td><td>user</td><td>Your starting account</td></tr>
+        <tr><td>bob</td><td>user</td><td>Another regular user</td></tr>
+        <tr><td>admin</td><td>admin</td><td>Has sensitive data</td></tr>
+      </tbody>
+    </table>
+    <small class="text-secondary">Login requires only username (no password in this lab).</small>
+  </div>
+</div>
+{% endblock %}

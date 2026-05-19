@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}A04 – Base64 Store{% endblock %}
+{% block content %}
+<h4><a href="/a04/">A04</a> — "Encrypted" Data Store
+  <span class="badge bg-danger ms-2">Base64 ≠ Encryption</span>
+</h4>
+<div class="row">
+  <div class="col-md-6">
+    <div class="card mb-3">
+      <div class="card-header">Encode (store)</div>
+      <div class="card-body">
+        <form method="post">
+          <input type="hidden" name="action" value="encode">
+          <textarea name="data" class="form-control mb-2" rows="3"
+                    placeholder="Enter sensitive data to 'encrypt'">{{ request.form.get('data','') if request.form.get('action')=='encode' else '' }}</textarea>
+          <button class="btn btn-danger btn-sm w-100">Encode (base64)</button>
+        </form>
+        {% if encoded %}
+        <div class="mt-2 alert alert-dark">
+          <strong>"Encrypted":</strong><br>
+          <code>{{ encoded }}</code>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="card mb-3">
+      <div class="card-header">Decode (retrieve)</div>
+      <div class="card-body">
+        <form method="post">
+          <input type="hidden" name="action" value="decode">
+          <textarea name="data" class="form-control mb-2" rows="3"
+                    placeholder="Paste base64 to decode">{{ request.form.get('data','') if request.form.get('action')=='decode' else '' }}</textarea>
+          <button class="btn btn-warning text-dark btn-sm w-100">Decode (reveal)</button>
+        </form>
+        {% if decoded %}
+        <div class="mt-2 alert alert-warning">
+          <strong>Decoded:</strong> {{ decoded }}
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+<div class="alert alert-dark">
+  <strong>Try encoding:</strong> <code>password=Admin123</code> — then decode it.
+  Base64 provides zero confidentiality; anyone with the encoded string can decode it instantly.
+</div>
+{% endblock %}

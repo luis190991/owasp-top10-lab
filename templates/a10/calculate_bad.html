@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}A10 – Divide (BAD){% endblock %}
+{% block content %}
+<h4><a href="/a10/">A10</a> — Calculator
+  <span class="badge bg-danger ms-2">Exposes stack trace</span>
+</h4>
+<div class="row">
+  <div class="col-md-5">
+    <div class="card mb-3">
+      <div class="card-body">
+        <form method="post">
+          <div class="row mb-2">
+            <div class="col"><input name="a" class="form-control text-center" placeholder="5" value="{{ request.form.get('a','') }}"></div>
+            <div class="col-auto d-flex align-items-center text-secondary">/</div>
+            <div class="col"><input name="b" class="form-control text-center" placeholder="0 ← try this" value="{{ request.form.get('b','') }}"></div>
+          </div>
+          <button class="btn btn-warning text-dark w-100">Calculate</button>
+        </form>
+        {% if result is not none %}<div class="alert alert-success mt-2">Result: {{ result }}</div>{% endif %}
+      </div>
+    </div>
+  </div>
+  <div class="col-md-7">
+    {% if error %}
+    <div class="card">
+      <div class="card-header text-danger">Stack Trace (exposed to user!)</div>
+      <div class="card-body">
+        <pre class="small text-danger">{{ error }}</pre>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

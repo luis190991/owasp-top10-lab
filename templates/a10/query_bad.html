@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}A10 – Query (BAD){% endblock %}
+{% block content %}
+<h4><a href="/a10/">A10</a> — DB Query
+  <span class="badge bg-danger ms-2">Error reveals table names</span>
+</h4>
+<div class="alert alert-dark mb-3">
+  Current table: <code>{{ table }}</code>
+  — Try:
+  <a href="/a10/query-bad?table=nonexistent">/a10/query-bad?table=nonexistent</a> |
+  <a href="/a10/query-bad?table=a04_users">/a10/query-bad?table=a04_users</a>
+</div>
+{% if error %}
+<div class="alert alert-danger font-monospace">{{ error }}</div>
+{% endif %}
+{% if result %}
+<div class="card">
+  <div class="card-header text-warning">Query Results</div>
+  <div class="card-body"><pre class="small">{{ result | tojson(indent=2) }}</pre></div>
+</div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}A09 – View Logs{% endblock %}
+{% block content %}
+<h4><a href="/a09/">A09</a> — Log Comparison</h4>
+<div class="row">
+  {% for fname, content in logs.items() %}
+  <div class="col-md-6">
+    <div class="card mb-3">
+      <div class="card-header {{ 'text-danger' if 'bad' in fname else 'text-success' }}">
+        {{ fname }}
+        <span class="badge {{ 'bg-danger' if 'bad' in fname else 'bg-success' }} ms-2">
+          {{ 'BAD' if 'bad' in fname else 'GOOD' }}
+        </span>
+      </div>
+      <div class="card-body">
+        <pre class="small" style="max-height:300px;overflow-y:auto">{{ content }}</pre>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+<div class="alert alert-dark">
+  <strong>Compare:</strong> The BAD log contains plaintext passwords, full card numbers,
+  and no failure events. The GOOD log uses WARNING for failures, masks card numbers,
+  and never logs credentials.
+</div>
+{% endblock %}

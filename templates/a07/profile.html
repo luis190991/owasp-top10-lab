@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}A07 – Profile{% endblock %}
+{% block content %}
+<h4><a href="/a07/">A07</a> — Profile</h4>
+{% if user %}
+<div class="card mb-3" style="max-width:450px">
+  <div class="card-body">
+    <p><strong>Username:</strong> {{ user.username }}</p>
+    <p><strong>Role:</strong> {{ user.role }}</p>
+    <p><strong>Session ID used:</strong> <code>{{ sid }}</code></p>
+  </div>
+</div>
+<a href="/a07/logout" class="btn btn-outline-secondary btn-sm">Logout</a>
+{% else %}
+<p class="text-secondary">Not authenticated.</p>
+<a href="/a07/login" class="btn btn-danger btn-sm">Login</a>
+{% endif %}
+{% endblock %}

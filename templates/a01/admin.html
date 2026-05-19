@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}A01 – Admin Panel{% endblock %}
+{% block content %}
+<h4><a href="/a01/">A01</a> — Admin Panel
+  <span class="badge bg-danger ms-2">Missing Role Check</span>
+</h4>
+<p class="text-secondary">Logged in as: <strong>{{ current_user.username }}</strong>
+  (role: <code>{{ current_user.role }}</code>)</p>
+
+<div class="alert alert-danger">
+  You reached the admin panel as <strong>{{ current_user.role }}</strong>!
+  The route has no <code>role == 'admin'</code> check.
+</div>
+
+<div class="card">
+  <div class="card-header">All Users (admin view)</div>
+  <div class="card-body p-0">
+    <table class="table table-dark mb-0">
+      <thead><tr><th>ID</th><th>Username</th><th>Email</th><th>Role</th><th>Credit Card</th></tr></thead>
+      <tbody>
+        {% for u in users %}
+        <tr>
+          <td>{{ u.id }}</td>
+          <td>{{ u.username }}</td>
+          <td>{{ u.email }}</td>
+          <td><span class="badge bg-{{ 'danger' if u.role=='admin' else 'secondary' }}">{{ u.role }}</span></td>
+          <td class="text-danger">{{ u.credit_card }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

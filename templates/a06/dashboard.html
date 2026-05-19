@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}A06 – Dashboard{% endblock %}
+{% block content %}
+<h4><a href="/a06/">A06</a> — Dashboard</h4>
+<div class="card mb-3" style="max-width:500px">
+  <div class="card-body">
+    <table class="table table-dark table-sm">
+      {% for k, v in user.items() %}
+      <tr><th>{{ k }}</th><td>{{ v }}</td></tr>
+      {% endfor %}
+    </table>
+    <div class="d-flex gap-2 mt-2">
+      <a href="/a06/update-profile" class="btn btn-warning btn-sm text-dark">Update Profile</a>
+      <a href="/a06/cart" class="btn btn-outline-secondary btn-sm">Cart</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

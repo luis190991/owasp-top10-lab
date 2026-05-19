@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}A01 – Login{% endblock %}
+{% block content %}
+<h4><a href="/a01/">A01</a> — Login</h4>
+<div class="card" style="max-width:400px">
+  <div class="card-body">
+    {% if error %}<div class="alert alert-danger">{{ error }}</div>{% endif %}
+    <form method="post">
+      <div class="mb-3">
+        <label class="form-label">Username</label>
+        <input name="username" class="form-control" placeholder="alice / bob / admin">
+      </div>
+      <button class="btn btn-danger w-100">Login (no password required)</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

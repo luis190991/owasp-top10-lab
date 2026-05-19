@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}OWASP Top 10:2025 — Lab Index{% endblock %}
+{% block content %}
+<div class="row mb-4">
+  <div class="col">
+    <h1 class="h3">OWASP Top 10:2025 — Security Lab</h1>
+    <p class="text-secondary">
+      Each lab contains a <span class="badge bg-danger">VULNERABLE</span> application for you to exploit
+      and understand, plus a <span class="badge bg-success">FIXED</span> reference implementation.
+      Read the challenge description before attacking.
+    </p>
+    <div class="alert alert-dark">
+      <strong>Setup:</strong> DB initialized automatically on startup.
+      Run <code>python run.py</code> to restart.
+      Solutions are in <code>solutions/</code>.
+    </div>
+  </div>
+</div>
+
+<div class="row g-3">
+  {% set labs = [
+    ("A01", "Broken Access Control",          "/a01/", "danger",  "IDOR, missing role checks, horizontal/vertical privilege escalation"),
+    ("A02", "Security Misconfiguration",       "/a02/", "warning", "Debug mode, exposed config, default credentials, verbose headers"),
+    ("A03", "Software Supply Chain Failures",  "/a03/", "warning", "Vulnerable dependencies (Pillow, PyYAML), unsafe yaml.load, unsigned plugins"),
+    ("A04", "Cryptographic Failures",          "/a04/", "danger",  "MD5 passwords, base64 'encryption', hardcoded keys, predictable tokens"),
+    ("A05", "Injection",                       "/a05/", "danger",  "SQL injection (auth bypass + UNION), OS command injection"),
+    ("A06", "Insecure Design",                 "/a06/", "warning", "Predictable reset tokens, business logic flaw, mass assignment"),
+    ("A07", "Authentication Failures",         "/a07/", "danger",  "No brute-force protection, sequential session IDs, plaintext cookie"),
+    ("A08", "Software & Data Integrity",       "/a08/", "danger",  "Pickle deserialization RCE, unsigned update, CI/CD webhook abuse"),
+    ("A09", "Logging & Alerting Failures",     "/a09/", "secondary","Password in logs, no failure events, no anomaly detection"),
+    ("A10", "Mishandling of Exceptions",       "/a10/", "warning", "Stack trace exposure, path traversal via errors, SQL error leakage"),
+  ] %}
+
+  {% for id, name, url, color, desc in labs %}
+  <div class="col-md-6">
+    <a href="{{ url }}" class="text-decoration-none">
+      <div class="card lab-card h-100">
+        <div class="card-header d-flex justify-content-between align-items-center">
+          <span class="badge bg-{{ color }}">{{ id }}</span>
+          <small class="text-secondary">2025</small>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">{{ name }}</h5>
+          <p class="card-text text-secondary small">{{ desc }}</p>
+        </div>
+      </div>
+    </a>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

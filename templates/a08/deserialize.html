@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}A08 – Pickle Deserialize{% endblock %}
+{% block content %}
+<h4><a href="/a08/">A08</a> — Insecure Deserialization
+  <span class="badge bg-danger ms-2">Pickle RCE</span>
+</h4>
+<div class="row">
+  <div class="col-md-6">
+    <div class="card mb-3">
+      <div class="card-header">Submit Pickle Payload (base64)</div>
+      <div class="card-body">
+        <form method="post">
+          <textarea name="data" class="form-control font-monospace mb-2" rows="5"
+                    placeholder="base64-encoded pickle data">{{ request.form.get('data','') }}</textarea>
+          <button class="btn btn-danger w-100">Deserialize</button>
+        </form>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header text-secondary small">Safe payload (for reference)</div>
+      <div class="card-body">
+        <pre class="small">{{ payload_hint }}</pre>
+        <small class="text-secondary">This is a benign <code>{'user': 'alice', 'role': 'admin'}</code> dict.</small>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    {% if error %}<div class="alert alert-danger">{{ error }}</div>{% endif %}
+    {% if result is not none %}
+    <div class="card">
+      <div class="card-header text-warning">Deserialized Result</div>
+      <div class="card-body"><pre>{{ result }}</pre></div>
+    </div>
+    {% endif %}
+    <div class="card mt-3">
+      <div class="card-header text-danger">Generate & send malicious payload</div>
+      <div class="card-body small">
+        <p>1. Go to <a href="/a08/generate-payload">/a08/generate-payload</a> with command <code>id</code></p>
+        <p>2. Copy the base64 output</p>
+        <p>3. Paste it here and click Deserialize</p>
+        <p>The server will execute your command and you'll see the output in the result.</p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

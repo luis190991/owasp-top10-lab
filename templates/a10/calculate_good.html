@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}A10 – Divide (GOOD){% endblock %}
+{% block content %}
+<h4><a href="/a10/">A10</a> — Calculator
+  <span class="badge bg-success ms-2">Safe error handling</span>
+</h4>
+<div class="card mb-3" style="max-width:400px">
+  <div class="card-body">
+    <form method="post">
+      <div class="row mb-2">
+        <div class="col"><input name="a" class="form-control text-center" placeholder="5" value="{{ request.form.get('a','') }}"></div>
+        <div class="col-auto d-flex align-items-center text-secondary">/</div>
+        <div class="col"><input name="b" class="form-control text-center" placeholder="0" value="{{ request.form.get('b','') }}"></div>
+      </div>
+      <button class="btn btn-success w-100">Calculate</button>
+    </form>
+    {% if result is not none %}<div class="alert alert-success mt-2">Result: {{ result }}</div>{% endif %}
+    {% if error %}<div class="alert alert-danger mt-2">{{ error }}</div>{% endif %}
+  </div>
+</div>
+<div class="alert alert-dark">
+  No stack trace, no file paths, no internal details. Full exception is logged server-side only.
+</div>
+{% endblock %}
